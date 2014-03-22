@@ -36,3 +36,29 @@
 
 #main-toolbar #h2
   background-image: url(../icons/h2.svg)
+
+#main-toolbar #fullscreen
+  background-image: url(../icons/fullscreen.svg)
+
+#main-toolbar #unfullscreen
+  background-image: url(../icons/unfullscreen.svg)
+  margin-right: 4px + 47px
+  z-index: 100
+
+#main-toolbar
+  transition: 0.5s ease all
+
+#main-toolbar.hidden
+  height: 0px
+
+#main-toolbar.hidden > .toolbutton,
+#main-toolbar.hidden > .scribe-toolbar > .toolbutton
+  display: none
+
+#main-toolbar.hidden + #canvas
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  z-index: 1
+  height: 100%

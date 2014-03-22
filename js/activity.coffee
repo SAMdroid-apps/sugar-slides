@@ -102,6 +102,18 @@ define (require) ->
       if confirm 'Delete the current slide?'
         remove_slide()
 
+    $('button#fullscreen').click ->
+      $('#main-toolbar').addClass 'hidden'
+      $('button#unfullscreen').show()
+      $(this).hide()
+      $('.slides').attr 'contenteditable', 'false'
+
+    $('button#unfullscreen').click ->
+      $('#main-toolbar').removeClass 'hidden'
+      $('button#fullscreen').show()
+      $(this).hide()
+      $('.slides').attr 'contenteditable', 'true'
+
     $('body').keyup (event) ->
       if event.keyCode == 39
         next_slide()
@@ -112,5 +124,6 @@ define (require) ->
      data = localStorage['slides']
      obj = JSON.parse data
      container.html obj.html
+     $('.slides').attr 'contenteditable', 'true'
 
     setInterval activity.write, 1000
