@@ -1,0 +1,8 @@
+*~
+
+#  Compiled stuff
+css/*.css
+js/*.js
+
+#  Libs are automatically added
+lib/

@@ -1,0 +1,16 @@
+{
+  "amd": {},
+  "volo": {
+    "baseUrl": "lib",
+    "dependencies": {
+      "sugar-web": "github:sugarlabs/sugar-web/master",
+      "domReady": "github:requirejs/domReady/2.0.1",
+      "webL10n": "github:sugarlabs/webL10n/master",
+      "mustache": "github:janl/mustache.js/0.7.2",
+      "text": "github:requirejs/text/2.0.10",
+      "jquery": "github:jquery/jquery/2.1.0",
+      "scribe": "github:guardian/scribe/v0.1.4",
+      "plugins": "github:guardian/scribe/master#src/plugins"
+    }
+  }
+}
