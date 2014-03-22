@@ -1,32 +1,22 @@
 define (require) ->
   activity = require 'sugar-web/activity/activity'
-  datastore = require 'sugar-web/datastore'
+  dictstore = require 'sugar-web/dictstore'
 
   require 'jquery'
   Scribe = require 'scribe'
   scribePluginToolbar = require 'plugins/scribe-plugin-toolbar'
-  scribePluginHeadingCommand = require 'plugins/scribe-plugin-toolbar'
+  scribePluginHeadingCommand = require 'plugins/scribe-plugin-heading-command'
  
   container = $ '.slides'
  
   activity.setup()
-  datastoreObject = activity.getDatastoreObject()
-  onLoaded = (error, metadata, data) ->
-    alert data
-    obj = JSON.parse data
-    console.log obj
-    container.html obj.html
-    $('section').each (x, ele) ->
-      scribe_slide_setup ele
-    undefined
-  datastoreObject.loadAsText onLoaded
 
-  activity.write = (callback)->
+  activity.write = ()->
     obj =
       html: container.html()
     jsonData = JSON.stringify obj
-    datastoreObject.setDataAsText jsonData
-    datastoreObject.save()
+    localStorage['slides'] = jsonData
+    dictstore.save()
 
   window.addEventListener 'activityStop', () ->
     event.preventDefault()
@@ -70,13 +60,31 @@ define (require) ->
     next_slide()
     scribe_slide_setup ele[0]
 
+  remove_slide = ->
+    center = $ 'section:not(.to-see, .seen)', container
+    center.remove()
+
+    slides = $ 'section'
+    if slides.length == 0
+      container.html "<section>
+               <h1>New Slide</h1>
+               <p>Lets type and make a new slide</p>
+                      </section>"
+    else
+      slides = $ 'section.to-see', container
+      if slides.length > 0
+        next_slide()
+      else
+        prev_slide()
+
 
   d = $ 'document'
   d.ready ->
     ele = $ '.slides'
     s = new Scribe ele[0], { allowBlockElements: true }
+    s.use scribePluginHeadingCommand(1)
+    s.use scribePluginHeadingCommand(2)
     s.use scribePluginToolbar(document.querySelector '.scribe-toolbar')
-    #  s.use scribePluginHeadingCommand(1)
 
     $('section').each (x, ele) ->
       scribe_slide_setup ele
@@ -90,8 +98,19 @@ define (require) ->
     $('button#add').click ->
       add_slide()
 
+    $('button#remove').click ->
+      if confirm 'Delete the current slide?'
+        remove_slide()
+
     $('body').keyup (event) ->
       if event.keyCode == 39
         next_slide()
       if event.keyCode == 37
         prev_slide()
+
+   dictstore.init ->
+     data = localStorage['slides']
+     obj = JSON.parse data
+     container.html obj.html
+
+    setInterval activity.write, 1000
