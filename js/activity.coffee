@@ -1,6 +1,7 @@
 define (require) ->
   activity = require 'sugar-web/activity/activity'
   dictstore = require 'sugar-web/dictstore'
+  themes = require 'activity/themes'
 
   require 'jquery'
   Scribe = require 'scribe'
@@ -14,6 +15,7 @@ define (require) ->
   activity.write = ()->
     obj =
       html: container.html()
+      theme: themes.get_theme()
     jsonData = JSON.stringify obj
     localStorage['slides'] = jsonData
     dictstore.save()
@@ -174,10 +176,13 @@ define (require) ->
       if event.keyCode == 37
         prev_slide()
 
-   dictstore.init ->
-     data = localStorage['slides']
-     obj = JSON.parse data
-     container.html obj.html
-     $('.slides').attr 'contenteditable', 'true'
+    themes.dialog_init()
+
+    dictstore.init ->
+      data = localStorage['slides']
+      obj = JSON.parse data
+      container.html obj.html
+      $('.slides').attr 'contenteditable', 'true'
+      themes.set_theme (obj.theme || themes.get_default())
 
     setInterval activity.write, 1000

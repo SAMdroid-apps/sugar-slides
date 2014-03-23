@@ -29,6 +29,8 @@
   <button class="toolbutton" id="format" title="Text Formatting Options">
     </button>
 
+  <button class="toolbutton" id="theme" title="Change Theme"></button>
+
   <!-- Buttons with class="pull-right" will be right aligned -->
   
   <button class="toolbutton pull-right" id="stop-button" title="Stop"></button>
@@ -84,6 +86,15 @@
             title="Big Title"></button>
     <button class="toolbutton" id="h2" data-command-name="h2"
             title="Small Title"></button>
+</div>
+
+<div class="theme-dialog" style="display: none;">
+  <div class="toolbar">
+    <span>Choose a theme:<span>
+    <button class="toolbutton pull-right" id="close" title="Close Dialog">
+      </button>
+  </div>
+  <ul class="themes-list"></ul>
 </div>
 
 </body>
