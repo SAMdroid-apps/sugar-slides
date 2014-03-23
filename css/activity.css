@@ -47,6 +47,8 @@ body, #canvas {
       color: white; }
   .theme-dialog span {
     font-size: 200%; }
+  .theme-dialog .toolbar {
+    padding-right: 0; }
 
 .toolbutton:disabled {
   opacity: 0.6; }
