@@ -77,6 +77,43 @@ define (require) ->
       else
         prev_slide()
 
+  set_context_menu_postion = (event, contextMenu) ->
+    #  Thanks 'linley' 
+    #  http://stackoverflow.com/questions/5470032/positioning-of-context-menu
+    mousePosition = {}
+    menuPostion = {}
+    menuDimension = {}
+
+    menuDimension.x = contextMenu.outerWidth()
+    menuDimension.y = contextMenu.outerHeight()
+    mousePosition.x = event.pageX
+    mousePosition.y = event.pageY
+
+    if mousePosition.x + menuDimension.x > $(window).width() + $(window).scrollLeft()
+      menuPostion.x = mousePosition.x - menuDimension.x
+    else
+      menuPostion.x = mousePosition.x
+
+    if mousePosition.y + menuDimension.y > $(window).height() + $(window).scrollTop()
+      menuPostion.y = mousePosition.y - menuDimension.y
+    else
+      menuPostion.y = mousePosition.y
+
+    menuPostion
+
+  do_selection_menu = (event) ->
+    if (container.attr 'contenteditable') == 'true'
+      event = event || window.event
+      popover = $ '.scribe-toolbar'
+
+      pos = set_context_menu_postion event, popover
+      popover.css 'top': pos.y
+      popover.css 'left', pos.x
+      popover.css 'opacity', '100'
+
+      $('body').one 'click', ->
+        popover.css 'opacity', '0'
+
 
   d = $ 'document'
   d.ready ->
@@ -85,6 +122,12 @@ define (require) ->
     s.use scribePluginHeadingCommand(1)
     s.use scribePluginHeadingCommand(2)
     s.use scribePluginToolbar(document.querySelector '.scribe-toolbar')
+
+
+    container.on 'contextmenu', (event) ->
+      event.preventDefault()
+      do_selection_menu()
+    
 
     $('section').each (x, ele) ->
       scribe_slide_setup ele

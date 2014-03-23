@@ -24,21 +24,6 @@
   <button class="toolbutton" id="p" title="Previous Slide"></button>
   <button class="toolbutton" id="n" title="Next Slide"></button>
 
-  <span class="scribe-toolbar">
-    <button class="toolbutton" id="bold" data-command-name="bold"
-            title="Bold"></button>
-    <button class="toolbutton" id="italic" data-command-name="italic"
-            title="Italic"></button>
-    <button class="toolbutton" id="ol" data-command-name="insertOrderedList"
-            title="Numbered List"></button>
-    <button class="toolbutton" id="ul" data-command-name="insertUnorderedList"
-            title="List (Dot Points)"></button>
-    <button class="toolbutton" id="h1" data-command-name="h1"
-            title="Big Title"></button>
-    <button class="toolbutton" id="h2" data-command-name="h2"
-            title="Small Title"></button>
-  </span>
-
   <!-- Buttons with class="pull-right" will be right aligned -->
   
   <button class="toolbutton pull-right" id="stop-button" title="Stop"></button>
@@ -46,13 +31,13 @@
     </button>
   <button class="toolbutton pull-right" id="unfullscreen" title="Exit Full Screen"
         style="display: none;">
+  </button>
 </div>
-</button>
 
 <!-- The content of your activity goes inside the canvas -->
 <div id="canvas">
 
-  <div class="slides" contenteditable>
+  <div class="slides" contenteditable="true">
 
       <section >
         <h1>The acute policy dictating</h1>
@@ -79,6 +64,23 @@
   </div>
 
 </div>
+
+
+<div class="toolbar scribe-toolbar" style="opacity: 0">
+    <button class="toolbutton" id="bold" data-command-name="bold"
+            title="Bold"></button>
+    <button class="toolbutton" id="italic" data-command-name="italic"
+            title="Italic"></button>
+    <button class="toolbutton" id="ol" data-command-name="insertOrderedList"
+            title="Numbered List"></button>
+    <button class="toolbutton" id="ul" data-command-name="insertUnorderedList"
+            title="List (Dot Points)"></button>
+    <button class="toolbutton" id="h1" data-command-name="h1"
+            title="Big Title"></button>
+    <button class="toolbutton" id="h2" data-command-name="h2"
+            title="Small Title"></button>
+</div>
+
 </body>
 
 </html>
