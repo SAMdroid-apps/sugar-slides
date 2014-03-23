@@ -127,10 +127,21 @@ define (require) ->
     container.on 'contextmenu', (event) ->
       event.preventDefault()
       do_selection_menu()
-    
 
-    $('section').each (x, ele) ->
-      scribe_slide_setup ele
+    $('button#format').click ->
+      popover = $ '.scribe-toolbar'
+      if this.palette_is_up || false
+        popover.css 'opacity', '0'
+        this.palette_is_up = false
+      else
+        pos = $(this).position()
+        pos.top += $(this).outerWidth() - 2
+        pos.left -= 10
+
+        popover.css 'top': pos.top
+        popover.css 'left', pos.left
+        popover.css 'opacity', '1'
+        this.palette_is_up = true
 
     $('button#n').click ->
       next_slide()
