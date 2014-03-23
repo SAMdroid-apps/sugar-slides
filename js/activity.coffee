@@ -12,19 +12,6 @@ define (require) ->
  
   activity.setup()
 
-  activity.write = ()->
-    obj =
-      html: container.html()
-      theme: themes.get_theme()
-    jsonData = JSON.stringify obj
-    localStorage['slides'] = jsonData
-    dictstore.save()
-
-  window.addEventListener 'activityStop', () ->
-    event.preventDefault()
-    activity.write()
-    activity.close()
-
   scribe_slide_setup = (ele) ->
     return
     s = new Scribe ele, { allowBlockElements: true }
@@ -178,11 +165,25 @@ define (require) ->
 
     themes.dialog_init()
 
-    dictstore.init ->
-      data = localStorage['slides']
-      obj = JSON.parse data
-      container.html obj.html
-      $('.slides').attr 'contenteditable', 'true'
-      themes.set_theme (obj.theme || themes.get_default())
+  require ['domReady!'], ->
+    activity.write = ()->
+      obj =
+        html: container.html()
+        theme: themes.get_theme()
+      jsonData = JSON.stringify obj
+      localStorage['slides'] = jsonData
+      dictstore.save()
 
-    setInterval activity.write, 1000
+    window.addEventListener 'activityStop', () ->
+      event.preventDefault()
+      activity.write()
+      activity.close()
+
+    dictstore.init ->
+        data = localStorage['slides']
+        obj = JSON.parse data
+        container.html obj.html
+        $('.slides').attr 'contenteditable', 'true'
+        themes.set_theme (obj.theme || themes.get_default())
+
+  setInterval activity.write, 1000
