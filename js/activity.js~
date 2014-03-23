@@ -1,0 +1,9 @@
+(function() {
+  define(function(require) {
+    var activity;
+    activity = require('sugar-web/activity/activity');
+    require('jquery');
+    return cosole.log(jQuery);
+  });
+
+}).call(this);

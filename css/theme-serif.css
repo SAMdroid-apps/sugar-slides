@@ -1,0 +1,30 @@
+h1 {
+  text-align: center;
+  color: blue;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 1em; }
+
+h2 {
+  font-size: 225%;
+  font-variant: small-caps;
+  color: green; }
+
+p, li {
+  color: red;
+  font-size: 150%; }
+
+blockquote {
+  color: #222222;
+  text-shadow: 0px 2px 3px #555555;
+  font-size: 150%;
+  margin-left: 0;
+  padding-left: 28px;
+  border-left: 6px solid #222222; }
+
+.slides section {
+  background: yellow;
+  border-radius: 8px;
+  box-shadow: 3px 3px 3px black; }
+.slides section.to-see, .slides section.seen {
+  box-shadow: 1px 1px 1px black; }

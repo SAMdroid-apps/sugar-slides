@@ -1,0 +1,31 @@
+h1 {
+  text-align: center;
+  color: #fff9d6;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 1em;
+  text-shadow: 0px 0px 0 #cdcdcd, 1px 1px 0 silver, 2px 2px 0 #b4b4b4, 3px 3px 0 #a7a7a7, 4px 4px 0 #9b9b9b, 5px 5px 0 #8e8e8e, 6px 6px 0 #828282, 7px 7px 0 #767676, 8px 8px 7px rgba(0, 0, 0, 0.8), 8px 8px 1px rgba(0, 0, 0, 0.5), 0px 0px 7px rgba(0, 0, 0, 0.2); }
+
+h2 {
+  font-size: 300%;
+  color: #222222;
+  text-shadow: 0px 2px 3px #555555; }
+
+p, li {
+  color: white;
+  font-size: 150%; }
+
+blockquote {
+  color: #222222;
+  text-shadow: 0px 2px 3px #555555;
+  font-size: 150%;
+  margin-left: 0;
+  padding-left: 28px;
+  border-left: 6px solid #222222; }
+
+.slides section {
+  background: #474747 url(../res/slide_bg.png);
+  border-radius: 8px;
+  box-shadow: 3px 3px 3px black; }
+.slides section.to-see, .slides section.seen {
+  box-shadow: 1px 1px 1px black; }
