@@ -1,6 +1,0 @@
-[Activity]
-name = COFFEE
-activity_version = 1
-bundle_id = me.samdroid.template.coffee
-exec = sugar-activity-web
-icon = activity-icon
