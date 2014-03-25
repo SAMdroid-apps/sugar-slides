@@ -59,7 +59,8 @@ body, #canvas {
 #main-toolbar #add {
   background-image: url(../icons/add.svg); }
 
-#main-toolbar #remove {
+#main-toolbar #remove,
+.toolbar #delete {
   background-image: url(../icons/remove.svg); }
 
 #main-toolbar #n {
@@ -95,6 +96,12 @@ body, #canvas {
 .toolbar #close {
   background-image: url(../icons/dialog-cancel.svg); }
 
+.toolbar #bigger {
+  background-image: url(../icons/fullscreen.svg); }
+
+.toolbar #smaller {
+  background-image: url(../icons/unfullscreen.svg); }
+
 #main-toolbar #fullscreen {
   background-image: url(../icons/fullscreen.svg); }
 
@@ -123,7 +130,7 @@ body, #canvas {
   z-index: 1;
   height: 100%; }
 
-.scribe-toolbar {
+.floating-toolbar {
   position: absolute;
   top: 100px;
   left: 100px;

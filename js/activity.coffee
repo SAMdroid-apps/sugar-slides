@@ -1,7 +1,9 @@
 define (require) ->
   activity = require 'sugar-web/activity/activity'
   dictstore = require 'sugar-web/dictstore'
+  set_context_menu_postion = require 'activity/menu'
   themes = require 'activity/themes'
+  img = require 'activity/img'
 
   require 'jquery'
   Scribe = require 'scribe'
@@ -66,30 +68,6 @@ define (require) ->
       else
         prev_slide()
 
-  set_context_menu_postion = (event, contextMenu) ->
-    #  Thanks 'linley' 
-    #  http://stackoverflow.com/questions/5470032/positioning-of-context-menu
-    mousePosition = {}
-    menuPostion = {}
-    menuDimension = {}
-
-    menuDimension.x = contextMenu.outerWidth()
-    menuDimension.y = contextMenu.outerHeight()
-    mousePosition.x = event.pageX
-    mousePosition.y = event.pageY
-
-    if mousePosition.x + menuDimension.x > $(window).width() + $(window).scrollLeft()
-      menuPostion.x = mousePosition.x - menuDimension.x
-    else
-      menuPostion.x = mousePosition.x
-
-    if mousePosition.y + menuDimension.y > $(window).height() + $(window).scrollTop()
-      menuPostion.y = mousePosition.y - menuDimension.y
-    else
-      menuPostion.y = mousePosition.y
-
-    menuPostion
-
   do_selection_menu = (event) ->
     if (container.attr 'contenteditable') == 'true'
       event = event || window.event
@@ -114,6 +92,8 @@ define (require) ->
 
 
     container.on 'contextmenu', (event) ->
+      if event.toElement.tagName == 'IMG'
+        return
       event.preventDefault()
       do_selection_menu()
 
@@ -141,6 +121,9 @@ define (require) ->
     $('button#add').click ->
       add_slide()
 
+    $('button#img').click ->
+      activity.showObjectChooser img.callback
+
     $('button#remove').click ->
       if confirm 'Delete the current slide?'
         remove_slide()
@@ -164,6 +147,7 @@ define (require) ->
         prev_slide()
 
     themes.dialog_init()
+    img.init()
 
   require ['domReady!'], ->
     activity.write = ()->

@@ -1,30 +1,17 @@
 (function() {
   define(function(require) {
-    var Scribe, activity, add_slide, container, d, dictstore, do_selection_menu, next_slide, prev_slide, remove_slide, scribePluginHeadingCommand, scribePluginToolbar, scribe_slide_setup, set_context_menu_postion, themes;
+    var Scribe, activity, add_slide, container, d, dictstore, do_selection_menu, img, next_slide, prev_slide, remove_slide, scribePluginHeadingCommand, scribePluginToolbar, scribe_slide_setup, set_context_menu_postion, themes;
     activity = require('sugar-web/activity/activity');
     dictstore = require('sugar-web/dictstore');
+    set_context_menu_postion = require('activity/menu');
     themes = require('activity/themes');
+    img = require('activity/img');
     require('jquery');
     Scribe = require('scribe');
     scribePluginToolbar = require('plugins/scribe-plugin-toolbar');
     scribePluginHeadingCommand = require('plugins/scribe-plugin-heading-command');
     container = $('.slides');
     activity.setup();
-    activity.write = function() {
-      var jsonData, obj;
-      obj = {
-        html: container.html(),
-        theme: themes.get_theme()
-      };
-      jsonData = JSON.stringify(obj);
-      localStorage['slides'] = jsonData;
-      return dictstore.save();
-    };
-    window.addEventListener('activityStop', function() {
-      event.preventDefault();
-      activity.write();
-      return activity.close();
-    });
     scribe_slide_setup = function(ele) {
       var s;
       return;
@@ -79,27 +66,6 @@
         }
       }
     };
-    set_context_menu_postion = function(event, contextMenu) {
-      var menuDimension, menuPostion, mousePosition;
-      mousePosition = {};
-      menuPostion = {};
-      menuDimension = {};
-      menuDimension.x = contextMenu.outerWidth();
-      menuDimension.y = contextMenu.outerHeight();
-      mousePosition.x = event.pageX;
-      mousePosition.y = event.pageY;
-      if (mousePosition.x + menuDimension.x > $(window).width() + $(window).scrollLeft()) {
-        menuPostion.x = mousePosition.x - menuDimension.x;
-      } else {
-        menuPostion.x = mousePosition.x;
-      }
-      if (mousePosition.y + menuDimension.y > $(window).height() + $(window).scrollTop()) {
-        menuPostion.y = mousePosition.y - menuDimension.y;
-      } else {
-        menuPostion.y = mousePosition.y;
-      }
-      return menuPostion;
-    };
     do_selection_menu = function(event) {
       var popover, pos;
       if ((container.attr('contenteditable')) === 'true') {
@@ -117,7 +83,7 @@
       }
     };
     d = $('document');
-    return d.ready(function() {
+    d.ready(function() {
       var ele, s;
       ele = $('.slides');
       s = new Scribe(ele[0], {
@@ -127,6 +93,9 @@
       s.use(scribePluginHeadingCommand(2));
       s.use(scribePluginToolbar(document.querySelector('.scribe-toolbar')));
       container.on('contextmenu', function(event) {
+        if (event.toElement.tagName === 'IMG') {
+          return;
+        }
         event.preventDefault();
         return do_selection_menu();
       });
@@ -157,6 +126,9 @@
       $('button#add').click(function() {
         return add_slide();
       });
+      $('button#img').click(function() {
+        return activity.showObjectChooser(img.callback);
+      });
       $('button#remove').click(function() {
         if (confirm('Delete the current slide?')) {
           return remove_slide();
@@ -183,7 +155,25 @@
         }
       });
       themes.dialog_init();
-      dictstore.init(function() {
+      return img.init();
+    });
+    require(['domReady!'], function() {
+      activity.write = function() {
+        var jsonData, obj;
+        obj = {
+          html: container.html(),
+          theme: themes.get_theme()
+        };
+        jsonData = JSON.stringify(obj);
+        localStorage['slides'] = jsonData;
+        return dictstore.save();
+      };
+      window.addEventListener('activityStop', function() {
+        event.preventDefault();
+        activity.write();
+        return activity.close();
+      });
+      return dictstore.init(function() {
         var data, obj;
         data = localStorage['slides'];
         obj = JSON.parse(data);
@@ -191,8 +181,8 @@
         $('.slides').attr('contenteditable', 'true');
         return themes.set_theme(obj.theme || themes.get_default());
       });
-      return setInterval(activity.write, 1000);
     });
+    return setInterval(activity.write, 1000);
   });
 
 }).call(this);

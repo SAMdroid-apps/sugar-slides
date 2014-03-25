@@ -31,6 +31,8 @@
 
   <button class="toolbutton" id="theme" title="Change Theme"></button>
 
+  <input class="toolbutton" id="img" title="Insert Image" type="file" name="files[]" />
+
   <!-- Buttons with class="pull-right" will be right aligned -->
   
   <button class="toolbutton pull-right" id="stop-button" title="Stop"></button>
@@ -73,7 +75,7 @@
 </div>
 
 
-<div class="toolbar scribe-toolbar" style="opacity: 0">
+<div class="toolbar floating-toolbar scribe-toolbar" style="opacity: 0">
     <button class="toolbutton" id="bold" data-command-name="bold"
             title="Bold"></button>
     <button class="toolbutton" id="italic" data-command-name="italic"
@@ -86,6 +88,14 @@
             title="Big Title"></button>
     <button class="toolbutton" id="h2" data-command-name="h2"
             title="Small Title"></button>
+</div>
+
+<div class="toolbar floating-toolbar image-toolbar" style="opacity: 0">
+    <button class="toolbutton" id="delete" title="Delete Image"></button>
+    <button class="toolbutton" id="smaller" title="Make The Image Smaller">
+      </button>
+    <button class="toolbutton" id="bigger" title="Make The Image Bigger">
+      </button>
 </div>
 
 <div class="theme-dialog" style="display: none;">
