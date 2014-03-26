@@ -26,7 +26,8 @@
         if (w >= 100) {
           w = 100;
         }
-        return target.attr('width', "" + w + "%");
+        target.attr('width', "" + w + "%");
+        return target.css('width', "" + w + "%");
       });
       $('#smaller', popover).click(function() {
         var w;
@@ -38,7 +39,8 @@
         if (w <= 5) {
           w = 5;
         }
-        return target.attr('width', "" + w + "%");
+        target.attr('width', "" + w + "%");
+        return target.css('width', "" + w + "%");
       });
       hide = function() {
         return popover.css('opacity', '0');
@@ -75,16 +77,22 @@
         }
         reader = new FileReader();
         reader.onload = function(event) {
-          var ele, h, slide;
+          var caption, ele, h, img, slide;
           slide = $('section:not(.to-see, .seen)');
-          ele = $("<img src='" + event.target.result + "'/                      width='50%' class='slide-image'>");
+          ele = $("<div class='img-container' width='50%'></div>");
+          ele.css('width', '50%');
           setup_img_ele(ele);
+          img = $("<img src='" + event.target.result + "'/                      class='slide-image' />");
+          img.css('width', '100%');
+          ele.append(img);
+          caption = $("<div class='caption'>Image Caption</div>");
+          ele.append(caption);
           h = $('h1, h2', slide);
           if (h1.lenght !== 0) {
-            ele.insertAfter(h.last());
-            return;
+            return ele.insertAfter(h.first());
+          } else {
+            return slide.prepend(ele);
           }
-          return slide.prepend(ele);
         };
         _results.push(reader.readAsDataURL(f));
       }

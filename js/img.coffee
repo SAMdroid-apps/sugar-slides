@@ -24,6 +24,7 @@ define (require) ->
       if w >= 100
         w = 100
       target.attr 'width', "#{ w }%"
+      target.css 'width', "#{ w }%"
 
     $('#smaller', popover).click ->
       w = target.attr 'width'
@@ -35,6 +36,7 @@ define (require) ->
       if w <= 5
         w = 5
       target.attr 'width', "#{ w }%"
+      target.css 'width', "#{ w }%"
 
     hide = ->
       popover.css 'opacity', '0'
@@ -66,17 +68,24 @@ define (require) ->
       reader.onload = (event) ->
         slide = $ 'section:not(.to-see, .seen)'
 
-        ele = $ "<img src='#{ event.target.result }'/
-                      width='50%' class='slide-image'>"
-
+        ele = $ "<div class='img-container' width='50%'></div>"
+        ele.css 'width', '50%'
         setup_img_ele ele
+
+        img = $ "<img src='#{ event.target.result }'/
+                      class='slide-image' />"
+        img.css 'width', '100%'
+        ele.append img
+
+        caption = $ "<div class='caption'>Image Caption</div>"
+        ele.append caption
 
         h = $('h1, h2', slide)
         if h1.lenght != 0
-          ele.insertAfter h.last()
-          return
-
-        slide.prepend ele
+          ele.insertAfter h.first()
+        else
+          slide.prepend ele
+        
       reader.readAsDataURL f
 
   this.init = ->
