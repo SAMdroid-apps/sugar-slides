@@ -103,7 +103,7 @@
         var popover, pos;
         popover = $('.scribe-toolbar');
         if (this.palette_is_up || false) {
-          popover.css('opacity', '0');
+          popover.hide();
           return this.palette_is_up = false;
         } else {
           pos = $(this).position();
@@ -113,7 +113,7 @@
             'top': pos.top
           });
           popover.css('left', pos.left);
-          popover.css('opacity', '1');
+          popover.show();
           return this.palette_is_up = true;
         }
       });

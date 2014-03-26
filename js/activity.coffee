@@ -100,7 +100,7 @@ define (require) ->
     $('button#format').click ->
       popover = $ '.scribe-toolbar'
       if this.palette_is_up || false
-        popover.css 'opacity', '0'
+        popover.hide()
         this.palette_is_up = false
       else
         pos = $(this).position()
@@ -109,7 +109,7 @@ define (require) ->
 
         popover.css 'top': pos.top
         popover.css 'left', pos.left
-        popover.css 'opacity', '1'
+        popover.show()
         this.palette_is_up = true
 
     $('button#n').click ->
