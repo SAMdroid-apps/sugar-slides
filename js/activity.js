@@ -157,7 +157,7 @@
       themes.dialog_init();
       return img.init();
     });
-    require(['domReady!'], function() {
+    return require(['domReady!'], function() {
       activity.write = function() {
         var jsonData, obj;
         obj = {
@@ -173,7 +173,7 @@
         activity.write();
         return activity.close();
       });
-      return dictstore.init(function() {
+      dictstore.init(function() {
         var data, obj;
         data = localStorage['slides'];
         obj = JSON.parse(data);
@@ -181,8 +181,8 @@
         $('.slides').attr('contenteditable', 'true');
         return themes.set_theme(obj.theme || themes.get_default());
       });
+      return setInterval(activity.write, 1000);
     });
-    return setInterval(activity.write, 1000);
   });
 
 }).call(this);

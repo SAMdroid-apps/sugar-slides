@@ -170,4 +170,4 @@ define (require) ->
         $('.slides').attr 'contenteditable', 'true'
         themes.set_theme (obj.theme || themes.get_default())
 
-  setInterval activity.write, 1000
+    setInterval activity.write, 1000
