@@ -13,37 +13,42 @@
       });
       popover.css('left', pos.x);
       popover.fadeIn();
-      $('#delete', popover).click(function() {
+      $('#delete', popover).one('click', function() {
         return target.remove();
       });
-      $('#bigger', popover).click(function() {
-        var w;
-        w = target.attr('width');
-        w = w.trim();
-        w = w.substring(0, w.search('%'));
-        w = Number(w);
-        w += 5;
+      $('#bigger', popover).one('click', function() {
+        var s, w;
+        s = target.attr('width');
+        s = s.trim();
+        console.log(s);
+        s = s.substring(0, s.search('%'));
+        console.log(s);
+        w = Number(s);
+        w += 8;
         if (w >= 100) {
           w = 100;
         }
-        target.attr('width', "" + w + "%");
-        return target.css('width', "" + w + "%");
+        target.attr('width', "" + (String(w)) + "%");
+        return target.css('width', "" + (String(w)) + "%");
       });
-      $('#smaller', popover).click(function() {
-        var w;
-        w = target.attr('width');
-        w = w.trim();
-        w = w.substring(0, w.search('%'));
-        w = Number(w);
-        w -= 5;
+      $('#smaller', popover).one('click', function() {
+        var s, w;
+        s = target.attr('width');
+        s = s.trim();
+        console.log(s);
+        s = s.substring(0, s.search('%'));
+        console.log(s);
+        w = Number(s);
+        w -= 8;
         if (w <= 5) {
           w = 5;
         }
-        target.attr('width', "" + w + "%");
-        return target.css('width', "" + w + "%");
+        target.attr('width', "" + (String(w)) + "%");
+        return target.css('width', "" + (String(w)) + "%");
       });
       hide = function() {
-        return popover.fadeOut();
+        popover.fadeOut();
+        return $('button', popover).off('click');
       };
       return $('body').one('click', function() {
         if (fromClick) {

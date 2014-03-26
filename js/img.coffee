@@ -11,35 +11,40 @@ define (require) ->
     popover.css 'left', pos.x
     popover.fadeIn()
 
-    $('#delete', popover).click ->
+    $('#delete', popover).one 'click', ->
       target.remove()
 
-    $('#bigger', popover).click ->
-      w = target.attr 'width'
-      w = w.trim()
-      w = w.substring 0, w.search('%')
+    $('#bigger', popover).one 'click', ->
+      s = target.attr 'width'
+      s = s.trim()
+      console.log s
+      s = s.substring 0, s.search('%')
+      console.log s
 
-      w = Number w
-      w += 5
+      w = Number s
+      w += 8
       if w >= 100
         w = 100
-      target.attr 'width', "#{ w }%"
-      target.css 'width', "#{ w }%"
+      target.attr 'width', "#{ String w }%"
+      target.css 'width', "#{ String w }%"
 
-    $('#smaller', popover).click ->
-      w = target.attr 'width'
-      w = w.trim()
-      w = w.substring 0, w.search('%')
+    $('#smaller', popover).one 'click', ->
+      s = target.attr 'width'
+      s = s.trim()
+      console.log s
+      s = s.substring 0, s.search('%')
+      console.log s
 
-      w = Number w
-      w -= 5
+      w = Number s
+      w -= 8
       if w <= 5
         w = 5
-      target.attr 'width', "#{ w }%"
-      target.css 'width', "#{ w }%"
+      target.attr 'width', "#{ String w }%"
+      target.css 'width', "#{ String w }%"
 
     hide = ->
       popover.fadeOut()
+      $('button', popover).off 'click'
     $('body').one 'click', ->
       if fromClick
         $('body').one 'click', hide
