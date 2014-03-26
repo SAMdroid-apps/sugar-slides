@@ -104,15 +104,18 @@
       return _results;
     };
     this.init = function() {
-      var ele, eles;
+      var ele;
       ele = $('button#img');
       ele.click(function() {
         return $('input#img').click();
       });
       ele = $('input#img');
-      ele[0].addEventListener('change', on_files_changed, false);
-      eles = $('img');
-      return eles.each(function(index) {
+      return ele[0].addEventListener('change', on_files_changed, false);
+    };
+    this.setup_palettes = function() {
+      var eles;
+      eles = $('.img-container');
+      return eles.each(function() {
         return setup_img_ele($(this));
       });
     };

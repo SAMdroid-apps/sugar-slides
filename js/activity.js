@@ -179,7 +179,8 @@
         obj = JSON.parse(data);
         container.html(obj.html);
         $('.slides').attr('contenteditable', 'true');
-        return themes.set_theme(obj.theme || themes.get_default());
+        themes.set_theme(obj.theme || themes.get_default());
+        return img.setup_palettes();
       });
       return setInterval(activity.write, 1000);
     });

@@ -101,8 +101,9 @@ define (require) ->
     ele = $ 'input#img'
     ele[0].addEventListener 'change', on_files_changed, false
 
-    eles = $ 'img'
-    eles.each (index) ->
+  this.setup_palettes = ->
+    eles = $ '.img-container'
+    eles.each ->
       setup_img_ele $(this)
 
   this

@@ -169,5 +169,6 @@ define (require) ->
         container.html obj.html
         $('.slides').attr 'contenteditable', 'true'
         themes.set_theme (obj.theme || themes.get_default())
+        img.setup_palettes()
 
     setInterval activity.write, 1000
