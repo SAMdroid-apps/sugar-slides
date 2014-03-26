@@ -9,7 +9,7 @@ define (require) ->
     pos = set_context_menu_postion event, popover
     popover.css 'top': pos.y
     popover.css 'left', pos.x
-    popover.css 'opacity', '100'
+    popover.fadeIn()
 
     $('#delete', popover).click ->
       target.remove()
@@ -39,7 +39,7 @@ define (require) ->
       target.css 'width', "#{ w }%"
 
     hide = ->
-      popover.css 'opacity', '0'
+      popover.fadeOut()
     $('body').one 'click', ->
       if fromClick
         $('body').one 'click', hide

@@ -139,5 +139,4 @@ body, #canvas {
   left: 100px;
   z-index: 500;
   margin: 10px;
-  padding: 0 0;
-  transition: 0.25s ease opacity; }
+  padding: 0 0; }

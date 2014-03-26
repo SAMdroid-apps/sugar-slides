@@ -12,7 +12,7 @@
         'top': pos.y
       });
       popover.css('left', pos.x);
-      popover.css('opacity', '100');
+      popover.fadeIn();
       $('#delete', popover).click(function() {
         return target.remove();
       });
@@ -43,7 +43,7 @@
         return target.css('width', "" + w + "%");
       });
       hide = function() {
-        return popover.css('opacity', '0');
+        return popover.fadeOut();
       };
       return $('body').one('click', function() {
         if (fromClick) {

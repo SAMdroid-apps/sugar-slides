@@ -76,10 +76,10 @@ define (require) ->
       pos = set_context_menu_postion event, popover
       popover.css 'top': pos.y
       popover.css 'left', pos.x
-      popover.css 'opacity', '100'
+      popover.fadeIn()
 
       $('body').one 'click', ->
-        popover.css 'opacity', '0'
+        popover.fadeOut()
 
 
   d = $ 'document'

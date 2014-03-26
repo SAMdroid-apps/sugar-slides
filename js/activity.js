@@ -76,9 +76,9 @@
           'top': pos.y
         });
         popover.css('left', pos.x);
-        popover.css('opacity', '100');
+        popover.fadeIn();
         return $('body').one('click', function() {
-          return popover.css('opacity', '0');
+          return popover.fadeOut();
         });
       }
     };
