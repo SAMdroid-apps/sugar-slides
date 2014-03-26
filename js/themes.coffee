@@ -3,13 +3,13 @@ define (require) ->
 
   T_DEFAULT =
     file: 'default'
-    description: 'DEFUALT theme'
+    description: 'Default theme'
 
-  #  T_SERIF =
-  #    file: 'serif'
-  #    description: 'Funky Theme'
+  T_FLAT =
+     file: 'flat'
+     description: 'Flat Theme'
 
-  THEMES = [T_DEFAULT]
+  THEMES = [T_DEFAULT, T_FLAT]
 
   current_theme = T_DEFAULT.file
 
@@ -19,6 +19,8 @@ define (require) ->
   this.set_theme = (name) ->
     $('link#theme').attr 'href', "css/theme-#{ name }.css"
     current_theme = name
+
+    $('.slides').hide().show()  # Force Redraw
 
   this.get_theme = ->
     current_theme

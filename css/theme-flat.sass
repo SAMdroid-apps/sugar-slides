@@ -1,0 +1,76 @@
+//  Thanks http://ios7colors.com/
+
+$Font-Size: 150%
+$Font-Stack: 'Lato',sans-serif
+
+@font-face
+  font-family: 'Lato'
+  font-style: normal
+  font-weight: 300
+  src: local('Lato Light'), local('Lato-Light'), url(/res/lato-300.woff) format('woff')
+
+@font-face
+  font-family: 'Lato'
+  font-style: normal
+  font-weight: 900
+  src: local('Lato Black'), local('Lato-Black'), url(/res/lato-900.woff) format('woff')
+
+=grad-bg($x, $y)
+  background: -webkit-linear-gradient($x, $y)
+  background: -o-linear-gradient($x, $y)
+  background: -moz-linear-gradient($x, $y)
+  background: linear-gradient($x, $y)
+
+h1
+  color: #5856D6
+
+  font-family: $Font-Stack
+  text-align: center
+  font-weight: 900
+  font-size: $Font-Size * 2.5
+
+h2
+  color: #D1EEFC
+
+  font-family: $Font-Stack
+  text-align: center
+  font-size: $Font-Size * 2
+  font-weight: 300
+
+p, li, .caption
+  color: #D1EEFC
+  font-size: $Font-Size
+  font-family: $Font-Stack
+
+.slides
+  section
+    border-radius: 8px
+
+  section:nth-child(4n + 1)
+    +grad-bg(#FF5E3A, #FF2A68)
+
+  section:nth-child(2n + 2)
+    +grad-bg(#EF4DB6, #C643FC)
+
+  section:nth-child(4n + 3)
+    +grad-bg(#C644FC, #5856D6)
+
+  section.to-see, section.seen
+    box-shadow: 1px 1px 1px black
+
+.img-container
+  display: block
+  margin-left: auto
+  margin-right: auto
+
+.slide-image
+  border-radius: 8px
+
+.caption
+  padding: 10px
+  padding-top: 10px
+  width: auto
+
+  border-radius: 8px
+  background-color: rgba(255, 255, 255, 0.3)
+  text-align: center

@@ -1,0 +1,64 @@
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Lato Light"), local("Lato-Light"), url(/res/lato-300.woff) format("woff"); }
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 900;
+  src: local("Lato Black"), local("Lato-Black"), url(/res/lato-900.woff) format("woff"); }
+h1 {
+  color: #5856d6;
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  font-weight: 900;
+  font-size: 375%; }
+
+h2 {
+  color: #d1eefc;
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  font-size: 300%;
+  font-weight: 300; }
+
+p, li, .caption {
+  color: #d1eefc;
+  font-size: 150%;
+  font-family: "Lato", sans-serif; }
+
+.slides section {
+  border-radius: 8px; }
+.slides section:nth-child(4n + 1) {
+  background: -webkit-linear-gradient(#ff5e3a, #ff2a68);
+  background: -o-linear-gradient(#ff5e3a, #ff2a68);
+  background: -moz-linear-gradient(#ff5e3a, #ff2a68);
+  background: linear-gradient(#ff5e3a, #ff2a68); }
+.slides section:nth-child(2n + 2) {
+  background: -webkit-linear-gradient(#ef4db6, #c643fc);
+  background: -o-linear-gradient(#ef4db6, #c643fc);
+  background: -moz-linear-gradient(#ef4db6, #c643fc);
+  background: linear-gradient(#ef4db6, #c643fc); }
+.slides section:nth-child(4n + 3) {
+  background: -webkit-linear-gradient(#c644fc, #5856d6);
+  background: -o-linear-gradient(#c644fc, #5856d6);
+  background: -moz-linear-gradient(#c644fc, #5856d6);
+  background: linear-gradient(#c644fc, #5856d6); }
+.slides section.to-see, .slides section.seen {
+  box-shadow: 1px 1px 1px black; }
+
+.img-container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+.slide-image {
+  border-radius: 8px; }
+
+.caption {
+  padding: 10px;
+  padding-top: 10px;
+  width: auto;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.3);
+  text-align: center; }

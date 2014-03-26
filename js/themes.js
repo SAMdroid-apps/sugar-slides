@@ -1,19 +1,24 @@
 (function() {
   define(function(require) {
-    var THEMES, T_DEFAULT, current_theme;
+    var THEMES, T_DEFAULT, T_FLAT, current_theme;
     require('jquery');
     T_DEFAULT = {
       file: 'default',
-      description: 'DEFUALT theme'
+      description: 'Default theme'
     };
-    THEMES = [T_DEFAULT];
+    T_FLAT = {
+      file: 'flat',
+      description: 'Flat Theme'
+    };
+    THEMES = [T_DEFAULT, T_FLAT];
     current_theme = T_DEFAULT.file;
     this.get_default = function() {
       return T_DEFAULT.file;
     };
     this.set_theme = function(name) {
       $('link#theme').attr('href', "css/theme-" + name + ".css");
-      return current_theme = name;
+      current_theme = name;
+      return $('.slides').hide().show();
     };
     this.get_theme = function() {
       return current_theme;
