@@ -92,7 +92,11 @@
     };
     this.init = function() {
       var ele, eles;
-      ele = $('#img');
+      ele = $('button#img');
+      ele.click(function() {
+        return $('input#img').click();
+      });
+      ele = $('input#img');
       ele[0].addEventListener('change', on_files_changed, false);
       eles = $('img');
       return eles.each(function(index) {

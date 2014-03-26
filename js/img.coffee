@@ -80,7 +80,11 @@ define (require) ->
       reader.readAsDataURL f
 
   this.init = ->
-    ele = $ '#img'
+    ele = $ 'button#img'
+    ele.click ->
+      $('input#img').click()
+
+    ele = $ 'input#img'
     ele[0].addEventListener 'change', on_files_changed, false
 
     eles = $ 'img'
