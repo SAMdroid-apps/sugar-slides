@@ -1,6 +1,6 @@
 (function() {
   define(function(require) {
-    var THEMES, T_DEFAULT, T_FLAT, current_theme;
+    var THEMES, T_BLACK, T_DEFAULT, T_FLAT, current_theme;
     require('jquery');
     T_DEFAULT = {
       file: 'default',
@@ -10,7 +10,11 @@
       file: 'flat',
       description: 'Flat Theme'
     };
-    THEMES = [T_DEFAULT, T_FLAT];
+    T_BLACK = {
+      file: 'black',
+      description: 'Black Theme'
+    };
+    THEMES = [T_DEFAULT, T_FLAT, T_BLACK];
     current_theme = T_DEFAULT.file;
     this.get_default = function() {
       return T_DEFAULT.file;

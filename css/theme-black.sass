@@ -1,0 +1,73 @@
+//  Thanks http://ios7colors.com/
+
+$Font-Size: 150%
+$Font-Stack: 'Lato',sans-serif
+
+@font-face
+  font-family: 'Lato'
+  font-style: normal
+  font-weight: 300
+  src: local('Lato Light'), local('Lato-Light'), url(/res/lato-300.woff) format('woff')
+
+@font-face
+  font-family: 'Lato'
+  font-style: normal
+  font-weight: 900
+  src: local('Lato Black'), local('Lato-Black'), url(/res/lato-900.woff) format('woff')
+
+=grad-bg($x, $y)
+  background: -webkit-linear-gradient($x, $y)
+  background: -o-linear-gradient($x, $y)
+  background: -moz-linear-gradient($x, $y)
+  background: linear-gradient($x, $y)
+
+h2, h1
+  margin: 0 0 20px 0
+  color: #eeeeee
+  line-height: 0.9em
+  letter-spacing: 0.02em
+  text-transform: uppercase
+  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2)
+  text-align: center
+
+h1
+  font-size: $Font-Size * 2
+  text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaaaaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 20px 20px rgba(0, 0, 0, 0.15)
+
+.slides
+  font-family: $Font-Stack
+  font-size: $Font-Size
+  font-weight: normal
+  letter-spacing: -0.02em
+  color: #eeeeee
+
+  overflow: none
+  height: 100%
+
+  background: #1c1e20
+  background: -moz-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%)
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #555a5f), color-stop(100%, #1c1e20))
+  background: -webkit-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%)
+  background: -o-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%)
+  background: -ms-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%)
+  background: radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%)
+  background-color: #2b2b2b
+
+.img-container
+  display: block
+  margin: 15px 0
+  margin-left: auto
+  margin-right: auto
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15)
+  background: rgba(255, 255, 255, 0.12)
+  border: 4px solid #eeeeee
+
+.slide-image
+
+.caption
+  margin-top: -5px
+  display: block
+  text-align: center
+  background: #eeeeee
+  color: black

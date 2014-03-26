@@ -9,7 +9,11 @@ define (require) ->
      file: 'flat'
      description: 'Flat Theme'
 
-  THEMES = [T_DEFAULT, T_FLAT]
+  T_BLACK =
+     file: 'black'
+     description: 'Black Theme'
+
+  THEMES = [T_DEFAULT, T_FLAT, T_BLACK]
 
   current_theme = T_DEFAULT.file
 
