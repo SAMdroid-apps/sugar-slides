@@ -1,0 +1,73 @@
+@font-face {
+  font-family: "Nothing You Could Do";
+  font-style: normal;
+  font-weight: regular;
+  src: local("Nothing You Could Do"), url(/res/nothingyoucoulddo.woff) format("woff"); }
+@font-face {
+  font-family: "Over the Rainbow";
+  font-style: normal;
+  font-weight: regular;
+  src: local("Over the Rainbow"), url(/res/overtherainbow.woff) format("woff"); }
+h1 {
+  color: black;
+  font-family: "Over the Rainbow", "Nothing You Could Do", cursive;
+  text-align: center;
+  font-weight: regular;
+  font-size: 50px;
+  text-decoration: underline;
+  line-height: 60px; }
+
+h2 {
+  color: black;
+  font-family: "Nothing You Could Do", cursive;
+  text-align: center;
+  font-size: 50px;
+  font-weight: 300;
+  line-height: 60px; }
+
+p, li, .caption {
+  color: black;
+  font-size: 16px;
+  font-family: "Nothing You Could Do", cursive;
+  font-size: 24px; }
+
+.slides section {
+  line-height: 30px;
+  background-image: -webkit-linear-gradient(left, rgba(255, 85, 91, 0.2), rgba(255, 85, 91, 0.2)), -webkit-linear-gradient(left, rgba(255, 85, 91, 0.8), rgba(255, 85, 91, 0.8)), -webkit-linear-gradient(top, white 0px, white 69px, rgba(255, 255, 255, 0) 70px), -webkit-repeating-linear-gradient(white 0px, white 18px, #a6ffed 19px, white 20px);
+  background-image: -moz-linear-gradient(left, rgba(255, 85, 91, 0.2), rgba(255, 85, 91, 0.2)), -moz-linear-gradient(left, rgba(255, 85, 91, 0.8), rgba(255, 85, 91, 0.8)), -moz-linear-gradient(top, white 0px, white 69px, rgba(255, 255, 255, 0) 70px), -moz-repeating-linear-gradient(white 0px, white 18px, #a6ffed 19px, white 20px);
+  background-image: -ms-linear-gradient(left, rgba(255, 85, 91, 0.2), rgba(255, 85, 91, 0.2)), -ms-linear-gradient(left, rgba(255, 85, 91, 0.8), rgba(255, 85, 91, 0.8)), -ms-linear-gradient(top, white 0px, white 69px, rgba(255, 255, 255, 0) 70px), -ms-repeating-linear-gradient(white 0px, white 18px, #a6ffed 19px, white 20px);
+  background-image: -o-linear-gradient(left, rgba(255, 85, 91, 0.2), rgba(255, 85, 91, 0.2)), -o-linear-gradient(left, rgba(255, 85, 91, 0.8), rgba(255, 85, 91, 0.8)), -o-linear-gradient(top, white 0px, white 69px, rgba(255, 255, 255, 0) 70px), -o-repeating-linear-gradient(white 0px, white 18px, #a6ffed 19px, white 20px);
+  background-image: linear-gradient(left, rgba(255, 85, 91, 0.2), rgba(255, 85, 91, 0.2)), linear-gradient(left, rgba(255, 85, 91, 0.8), rgba(255, 85, 91, 0.8)), linear-gradient(top, white 0px, white 69px, rgba(255, 255, 255, 0) 70px), repeating-linear-gradient(white 0px, white 18px, #a6ffed 19px, white 20px);
+  background-size: 1px, 1px, auto, auto 30px;
+  background-repeat: repeat-y, repeat-y, no-repeat, repeat;
+  background-position: -webkit-calc(100% - 50px) 0px, 50px 0px, 0px 0px, 0px 0px;
+  background-position: -moz-calc(100% - 50px) 0px, 50px 0px, 0px 0px, 0px 0px;
+  background-position: calc(100% - 50px) 0px, 50px 0px, 0px 0px, 0px 0px;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: -webkit-calc(100% - 132px);
+  width: -moz-calc(100% - 132px);
+  width: calc(100% - 132px); }
+.slides section.to-see, .slides section.seen {
+  box-shadow: 1px 1px 1px black; }
+
+.img-container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+.slide-image {
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  transform: rotate(3deg); }
+
+.caption {
+  padding: 10px;
+  padding-top: 10px;
+  width: auto;
+  -webkit-transform: rotate(-4deg);
+  -moz-transform: rotate(-4deg);
+  transform: rotate(-4deg);
+  color: white;
+  background-color: black;
+  text-align: center; }

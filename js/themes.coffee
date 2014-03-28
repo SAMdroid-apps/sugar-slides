@@ -10,7 +10,10 @@ define (require) ->
   T_BLACK =
      file: 'black'
 
-  THEMES = [T_DEFAULT, T_FLAT, T_BLACK]
+  T_HAND =
+     file: 'handwritten'
+
+  THEMES = [T_DEFAULT, T_FLAT, T_HAND, T_BLACK]
 
   current_theme = T_DEFAULT.file
 
