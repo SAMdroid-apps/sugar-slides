@@ -38,6 +38,7 @@ body, #canvas {
   color: white; }
   .theme-dialog .themes-list {
     padding: 10px;
+    margin-top: 55px;
     list-style: none; }
     .theme-dialog .themes-list li {
       padding-bottom: 15px;
@@ -50,7 +51,11 @@ body, #canvas {
   .theme-dialog span {
     font-size: 200%; }
   .theme-dialog .toolbar {
-    padding-right: 0; }
+    position: fixed;
+    padding-right: 0;
+    width: -webkit-calc(90% - 57px);
+    width: -moz-calc(90% - 57px);
+    width: calc(90% - 57px); }
 
 .toolbutton:disabled {
   opacity: 0.6; }
