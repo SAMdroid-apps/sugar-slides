@@ -16,10 +16,10 @@ define (require) ->
  
   activity.setup()
 
-  scribe_slide_setup = (ele) ->
-    return
-    s = new Scribe ele, { allowBlockElements: true }
-    s.use scribePluginToolbar($('.scribe-toolbar')[0])
+  do_bar = ->
+    bar = $ '.bar'
+    x = ($('section.seen').length) / ($('section').length - 1)
+    bar.css 'width', "#{ x * 100 }%"
 
   next_slide = ->
     slides = $ 'section.to-see', container
@@ -32,6 +32,8 @@ define (require) ->
     slide = $ slides[0]
     slide.removeClass 'to-see'
 
+    do_bar()
+
   prev_slide = ->
     slides = $ 'section.seen', container
     if slides.length == 0
@@ -43,6 +45,8 @@ define (require) ->
     slide = $ slides[slides.length - 1]
     slide.removeClass 'seen'
 
+    do_bar()
+
   add_slide = ->
     ele = $ "<section class='to-see'>
                <h1>New Slide</h1>
@@ -51,7 +55,8 @@ define (require) ->
     center = $ 'section:not(.to-see, .seen)', container
     ele.insertAfter center
     next_slide()
-    scribe_slide_setup ele[0]
+
+    do_bar()
 
   remove_slide = ->
     center = $ 'section:not(.to-see, .seen)', container
@@ -198,5 +203,6 @@ define (require) ->
         $('.slides').attr 'contenteditable', 'true'
         themes.set_theme (obj.theme || themes.get_default())
         img.setup_palettes()
+        do_bar()
 
     setInterval activity.write, 1000

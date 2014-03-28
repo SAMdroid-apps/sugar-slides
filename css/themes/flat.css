@@ -62,3 +62,12 @@ p, li, .caption {
   border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.3);
   text-align: center; }
+
+.bar {
+  background-image: -webkit-gradient(linear, right top, left top, color-stop(0, #4a4a4a), color-stop(1, #2b2b2b));
+  background-image: -o-linear-gradient(left, #4a4a4a 0%, #2b2b2b 100%);
+  background-image: -moz-linear-gradient(left, #4a4a4a 0%, #2b2b2b 100%);
+  background-image: -webkit-linear-gradient(left, #4a4a4a 0%, #2b2b2b 100%);
+  background-image: -ms-linear-gradient(left, #4a4a4a 0%, #2b2b2b 100%);
+  background-image: linear-gradient(to left, #4a4a4a 0%, #2b2b2b 100%);
+  transition: 1s ease all; }

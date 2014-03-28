@@ -71,3 +71,13 @@ p, li, .caption {
   color: white;
   background-color: black;
   text-align: center; }
+
+.bar {
+  margin-top: 2px;
+  height: 3px;
+  background-color: #a6ffed;
+  transition: 0.75s ease all;
+  -webkit-transform: rotate(-0.3deg);
+  transform: rotate(-0.3deg);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0; }

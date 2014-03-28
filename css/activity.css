@@ -56,6 +56,16 @@ body, #canvas {
     padding-left: 0;
     width: 90%; }
 
+.bar {
+  position: absolute;
+  display: block;
+  top: 99%;
+  top: -webkit-calc(100% - 5px);
+  top: -moz-calc(100% - 5px);
+  top: calc(100% - 5px);
+  left: 0;
+  height: 5px; }
+
 .toolbutton:disabled {
   opacity: 0.6; }
 

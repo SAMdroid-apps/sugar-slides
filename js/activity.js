@@ -4,7 +4,7 @@
   MIN_TOUCH_DISTANCE = 400;
 
   define(function(require) {
-    var Scribe, activity, add_slide, container, d, dictstore, do_selection_menu, img, next_slide, prev_slide, remove_slide, scribePluginHeadingCommand, scribePluginToolbar, scribe_slide_setup, set_context_menu_postion, themes;
+    var Scribe, activity, add_slide, container, d, dictstore, do_bar, do_selection_menu, img, next_slide, prev_slide, remove_slide, scribePluginHeadingCommand, scribePluginToolbar, set_context_menu_postion, themes;
     activity = require('sugar-web/activity/activity');
     dictstore = require('sugar-web/dictstore');
     set_context_menu_postion = require('activity/menu');
@@ -16,13 +16,11 @@
     scribePluginHeadingCommand = require('plugins/scribe-plugin-heading-command');
     container = $('.slides');
     activity.setup();
-    scribe_slide_setup = function(ele) {
-      var s;
-      return;
-      s = new Scribe(ele, {
-        allowBlockElements: true
-      });
-      return s.use(scribePluginToolbar($('.scribe-toolbar')[0]));
+    do_bar = function() {
+      var bar, x;
+      bar = $('.bar');
+      x = ($('section.seen').length) / ($('section').length - 1);
+      return bar.css('width', "" + (x * 100) + "%");
     };
     next_slide = function() {
       var center, slide, slides;
@@ -33,7 +31,8 @@
       center = $('section:not(.to-see, .seen)', container);
       center.addClass('seen');
       slide = $(slides[0]);
-      return slide.removeClass('to-see');
+      slide.removeClass('to-see');
+      return do_bar();
     };
     prev_slide = function() {
       var center, slide, slides;
@@ -44,7 +43,8 @@
       center = $('section:not(.to-see, .seen)', container);
       center.addClass('to-see');
       slide = $(slides[slides.length - 1]);
-      return slide.removeClass('seen');
+      slide.removeClass('seen');
+      return do_bar();
     };
     add_slide = function() {
       var center, ele;
@@ -52,7 +52,7 @@
       center = $('section:not(.to-see, .seen)', container);
       ele.insertAfter(center);
       next_slide();
-      return scribe_slide_setup(ele[0]);
+      return do_bar();
     };
     remove_slide = function() {
       var center, slides;
@@ -215,7 +215,8 @@
         container.html(obj.html);
         $('.slides').attr('contenteditable', 'true');
         themes.set_theme(obj.theme || themes.get_default());
-        return img.setup_palettes();
+        img.setup_palettes();
+        return do_bar();
       });
       return setInterval(activity.write, 1000);
     });
