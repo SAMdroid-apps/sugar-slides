@@ -1,6 +1,9 @@
 @import slides
 @import theme-dialog
 
+$computer: "not screen and (device-width: 1200px) and (device-height: 900px)"
+$xo: "screen and (device-width: 1200px) and (device-height: 900px)"
+
 .toolbutton:disabled
   opacity: 0.6
 
@@ -61,11 +64,15 @@
 
 #main-toolbar #unfullscreen
   background-image: url(../icons/unfullscreen.svg)
-  margin-right: 4px + 47px
   z-index: 100
 
   transition: 0.25s ease all
   opacity: 0.3
+
+  @media #{ $computer }
+    margin-right: 4px + 47px
+  @media #{ $xo }
+    margin-right: 4px + 59px
 
 #main-toolbar #unfullscreen:hover
   opacity: 1

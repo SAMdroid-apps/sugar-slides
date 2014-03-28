@@ -117,10 +117,15 @@ body, #canvas {
 
 #main-toolbar #unfullscreen {
   background-image: url(../icons/unfullscreen.svg);
-  margin-right: 51px;
   z-index: 100;
   transition: 0.25s ease all;
   opacity: 0.3; }
+  @media not screen and (device-width: 1200px) and (device-height: 900px) {
+    #main-toolbar #unfullscreen {
+      margin-right: 51px; } }
+  @media screen and (device-width: 1200px) and (device-height: 900px) {
+    #main-toolbar #unfullscreen {
+      margin-right: 63px; } }
 
 #main-toolbar #unfullscreen:hover {
   opacity: 1; }
