@@ -45,6 +45,8 @@ body, #canvas {
       font-family: sans-serif;
       font-weight: bold;
       color: white; }
+      .theme-dialog .themes-list li img {
+        max-width: 100%; }
   .theme-dialog span {
     font-size: 200%; }
   .theme-dialog .toolbar {

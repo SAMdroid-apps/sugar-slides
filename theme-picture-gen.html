@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<title>My Activity</title>
+<link rel="stylesheet" media="not screen and (device-width: 1200px) and (device-height: 900px)"
+      href="lib/sugar-web/graphics/css/sugar-96dpi.css">
+<link rel="stylesheet" media="screen and (device-width: 1200px) and (device-height: 900px)"
+      href="lib/sugar-web/graphics/css/sugar-200dpi.css">
+
+<link rel="stylesheet" href="" id="theme">
+<script>
+var themeName, ele;
+
+themeName = prompt('Theme name (eg. flat)');
+ele = document.getElementById('theme');
+
+ele.href = 'css/themes/' +  themeName + '.css';
+</script>
+
+<style>
+.slides {
+  width: 300px;
+  height: 220px;
+
+  display: block;
+  float: left;
+  margin-right: 20px;
+}
+section {
+  position: absolute;
+  top: 5px;
+
+  width: 300px;
+  height: 220px;
+}
+#canvas {
+  position: absolute;
+  top: 0;
+
+  background-color: black;
+  height: 225px;
+  width: 965px;
+  padding-top: 5px;
+  padding-left: 5px;
+
+  overflow: visible;
+}
+</style>
+
+</head>
+
+<body>
+<div id="canvas">
+
+  <div class="slides">
+      <section>
+        <h1>Alice</h1>
+        <p>was not a bit hurt, and she jumped up on</p>
+      </section>
+  </div>
+
+  <div class="slides">
+      <section>
+        <h2>Small</h2>
+        <ol>
+          <li>Alice was not</li>
+        </ol>
+        <ul>
+          <li><b>There were doors</b></li>
+          <li>Suddenly she came upon</li>
+        </ul>
+      </section>
+  </div>
+
+  <div class="slides">
+      <section>
+        <br />
+        <div class="img-container" width="74%" style="width: 74%;">
+         <img src="res/example.jpg" class="slide-image" style="width: 100%;">
+         <div class="caption">A Bird Flying</div>
+        </div>
+      </section>
+  </div>
+
+<br/><br/>
+
+</div>
+</body>
+</html>

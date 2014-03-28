@@ -3,15 +3,12 @@ define (require) ->
 
   T_DEFAULT =
     file: 'default'
-    description: 'Default theme'
 
   T_FLAT =
      file: 'flat'
-     description: 'Flat Theme'
 
   T_BLACK =
      file: 'black'
-     description: 'Black Theme'
 
   THEMES = [T_DEFAULT, T_FLAT, T_BLACK]
 
@@ -34,7 +31,6 @@ define (require) ->
     for theme in THEMES
       ele = $ "<li>
         <img src='res/themes-picture/#{ theme.file }.png' />
-        #{ theme.description }
                </li>"
       ele.data 'file', theme.file
       ele.click ->

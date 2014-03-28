@@ -3,16 +3,13 @@
     var THEMES, T_BLACK, T_DEFAULT, T_FLAT, current_theme;
     require('jquery');
     T_DEFAULT = {
-      file: 'default',
-      description: 'Default theme'
+      file: 'default'
     };
     T_FLAT = {
-      file: 'flat',
-      description: 'Flat Theme'
+      file: 'flat'
     };
     T_BLACK = {
-      file: 'black',
-      description: 'Black Theme'
+      file: 'black'
     };
     THEMES = [T_DEFAULT, T_FLAT, T_BLACK];
     current_theme = T_DEFAULT.file;
@@ -32,7 +29,7 @@
       list = $('.themes-list');
       for (_i = 0, _len = THEMES.length; _i < _len; _i++) {
         theme = THEMES[_i];
-        ele = $("<li>        <img src='res/themes-picture/" + theme.file + ".png' />        " + theme.description + "               </li>");
+        ele = $("<li>        <img src='res/themes-picture/" + theme.file + ".png' />               </li>");
         ele.data('file', theme.file);
         ele.click(function() {
           set_theme($(this).data('file'));
