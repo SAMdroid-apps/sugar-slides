@@ -53,9 +53,8 @@ body, #canvas {
   .theme-dialog .toolbar {
     position: fixed;
     padding-right: 0;
-    width: -webkit-calc(90% - 57px);
-    width: -moz-calc(90% - 57px);
-    width: calc(90% - 57px); }
+    padding-left: 0;
+    width: 90%; }
 
 .toolbutton:disabled {
   opacity: 0.6; }
