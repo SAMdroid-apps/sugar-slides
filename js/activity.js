@@ -1,4 +1,8 @@
 (function() {
+  var MIN_TOUCH_DISTANCE;
+
+  MIN_TOUCH_DISTANCE = 400;
+
   define(function(require) {
     var Scribe, activity, add_slide, container, d, dictstore, do_selection_menu, img, next_slide, prev_slide, remove_slide, scribePluginHeadingCommand, scribePluginToolbar, scribe_slide_setup, set_context_menu_postion, themes;
     activity = require('sugar-web/activity/activity');
@@ -84,7 +88,7 @@
     };
     d = $('document');
     d.ready(function() {
-      var ele, s;
+      var ele, s, touch_starts;
       ele = $('.slides');
       s = new Scribe(ele[0], {
         allowBlockElements: true
@@ -122,6 +126,37 @@
       });
       $('button#p').click(function() {
         return prev_slide();
+      });
+      document.body.addEventListener('touchmove', function() {
+        return event.preventDefault();
+      }, false);
+      touch_starts = {};
+      container[0].addEventListener('touchstart', function(event) {
+        var t;
+        t = event.touches[event.which];
+        return touch_starts[event.which] = {
+          x: t.clientX,
+          y: t.clientY,
+          can_do: true
+        };
+      });
+      container[0].addEventListener('touchmove', function(event) {
+        var distance, t;
+        event.preventDefault();
+        t = event.touches[event.which];
+        s = touch_starts[event.which];
+        distance = Math.abs(t.clientX - s.x) + Math.abs(t.clientY - s.y);
+        if (distance > MIN_TOUCH_DISTANCE && s.can_do === true) {
+          s.can_do = false;
+          if ((t.clientX - s.x) > 0) {
+            return prev_slide();
+          } else {
+            return next_slide();
+          }
+        }
+      });
+      container[0].addEventListener('touchend', function(event) {
+        return touch_starts[event.which] = {};
       });
       $('button#add').click(function() {
         return add_slide();

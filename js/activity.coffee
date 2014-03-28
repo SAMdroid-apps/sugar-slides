@@ -1,3 +1,5 @@
+MIN_TOUCH_DISTANCE = 400
+
 define (require) ->
   activity = require 'sugar-web/activity/activity'
   dictstore = require 'sugar-web/dictstore'
@@ -117,6 +119,32 @@ define (require) ->
 
     $('button#p').click ->
       prev_slide()
+
+    document.body.addEventListener 'touchmove', ->
+      event.preventDefault()
+    , false
+
+    touch_starts = {}
+    container[0].addEventListener 'touchstart', (event) ->
+      t = event.touches[event.which]
+      touch_starts[event.which] = {x: t.clientX, y: t.clientY, can_do: true}
+
+    container[0].addEventListener 'touchmove', (event) ->
+      event.preventDefault()
+      t = event.touches[event.which]
+      s = touch_starts[event.which]
+
+      #  Quick and wrong maths
+      distance = Math.abs(t.clientX - s.x) + Math.abs(t.clientY - s.y)
+      if distance > MIN_TOUCH_DISTANCE and s.can_do == true
+        s.can_do = false
+        if (t.clientX - s.x) > 0
+          prev_slide()
+        else
+          next_slide()
+
+    container[0].addEventListener 'touchend', (event) ->
+      touch_starts[event.which] = {}
 
     $('button#add').click ->
       add_slide()
