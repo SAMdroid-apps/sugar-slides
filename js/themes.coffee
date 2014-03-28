@@ -21,7 +21,7 @@ define (require) ->
     T_DEFAULT.file
 
   this.set_theme = (name) ->
-    $('link#theme').attr 'href', "css/theme-#{ name }.css"
+    $('link#theme').attr 'href', "css/themes/#{ name }.css"
     current_theme = name
 
     $('.slides').hide().show()  # Force Redraw
@@ -33,7 +33,7 @@ define (require) ->
     list = $ '.themes-list'
     for theme in THEMES
       ele = $ "<li>
-        <img src='res/theme-#{ theme.file }.png' />
+        <img src='res/themes-picture/#{ theme.file }.png' />
         #{ theme.description }
                </li>"
       ele.data 'file', theme.file

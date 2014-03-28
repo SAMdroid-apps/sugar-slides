@@ -20,7 +20,7 @@
       return T_DEFAULT.file;
     };
     this.set_theme = function(name) {
-      $('link#theme').attr('href', "css/theme-" + name + ".css");
+      $('link#theme').attr('href', "css/themes/" + name + ".css");
       current_theme = name;
       return $('.slides').hide().show();
     };
@@ -32,7 +32,7 @@
       list = $('.themes-list');
       for (_i = 0, _len = THEMES.length; _i < _len; _i++) {
         theme = THEMES[_i];
-        ele = $("<li>        <img src='res/theme-" + theme.file + ".png' />        " + theme.description + "               </li>");
+        ele = $("<li>        <img src='res/themes-picture/" + theme.file + ".png' />        " + theme.description + "               </li>");
         ele.data('file', theme.file);
         ele.click(function() {
           set_theme($(this).data('file'));
