@@ -24,7 +24,7 @@ blockquote {
   border-left: 6px solid #222222; }
 
 .slides section {
-  background: #474747 url(../res/slide_bg.png);
+  background: #474747 url(../../res/slide_bg.png);
   border-radius: 8px;
   box-shadow: 3px 3px 3px black; }
 .slides section.to-see, .slides section.seen {
