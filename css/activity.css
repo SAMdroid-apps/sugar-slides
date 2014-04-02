@@ -59,6 +59,7 @@ body, #canvas {
 .bar {
   position: absolute;
   display: block;
+  z-index: 5;
   top: 99%;
   top: -webkit-calc(100% - 5px);
   top: -moz-calc(100% - 5px);
