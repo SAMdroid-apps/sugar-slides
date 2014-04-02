@@ -21,7 +21,7 @@ body, #canvas {
   .slides section.seen {
     left: -100%; }
 
-.theme-dialog {
+.dialog {
   display: block;
   position: absolute;
   top: 5%;
@@ -35,26 +35,28 @@ body, #canvas {
   z-index: 500;
   font-family: sans-serif;
   font-weight: bold;
-  color: white; }
-  .theme-dialog .themes-list {
-    padding: 10px;
-    margin-top: 55px;
-    list-style: none; }
-    .theme-dialog .themes-list li {
-      padding-bottom: 15px;
-      font-size: 18px;
-      font-family: sans-serif;
-      font-weight: bold;
-      color: white; }
-      .theme-dialog .themes-list li img {
-        max-width: 100%; }
-  .theme-dialog span {
-    font-size: 200%; }
-  .theme-dialog .toolbar {
+  color: white;
+  font-size: 200%; }
+  .dialog .toolbar {
     position: fixed;
     padding-right: 0;
     padding-left: 0;
     width: 90%; }
+  .dialog .toolbar + * {
+    margin-top: 55px;
+    padding: 10px; }
+
+.themes-list {
+  padding: 10px;
+  list-style: none; }
+  .themes-list li {
+    padding-bottom: 15px;
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: white; }
+  .themes-list img {
+    max-width: 100%; }
 
 .bar {
   position: absolute;
@@ -94,6 +96,9 @@ body, #canvas {
 
 #main-toolbar #img {
   background-image: url(../icons/insert-img.svg); }
+
+#main-toolbar #cloud {
+  background-image: url(../icons/cloud.svg); }
 
 .toolbar #bold {
   background-image: url(../icons/bold.svg); }

@@ -4,12 +4,13 @@
   MIN_TOUCH_DISTANCE = 400;
 
   define(function(require) {
-    var Scribe, activity, add_slide, container, d, dictstore, do_bar, do_selection_menu, img, next_slide, prev_slide, remove_slide, scribePluginHeadingCommand, scribePluginToolbar, set_context_menu_postion, themes;
+    var Scribe, activity, add_slide, cloud, container, d, dictstore, do_bar, do_selection_menu, img, next_slide, prev_slide, remove_slide, scribePluginHeadingCommand, scribePluginToolbar, set_context_menu_postion, themes;
     activity = require('sugar-web/activity/activity');
     dictstore = require('sugar-web/dictstore');
     set_context_menu_postion = require('activity/menu');
     themes = require('activity/themes');
     img = require('activity/img');
+    cloud = require('activity/cloud');
     require('jquery');
     Scribe = require('scribe');
     scribePluginToolbar = require('plugins/scribe-plugin-toolbar');
@@ -127,9 +128,6 @@
       $('button#p').click(function() {
         return prev_slide();
       });
-      document.body.addEventListener('touchmove', function() {
-        return event.preventDefault();
-      }, false);
       touch_starts = {};
       container[0].addEventListener('touchstart', function(event) {
         var t;
@@ -190,6 +188,7 @@
         }
       });
       themes.dialog_init();
+      cloud.init(themes);
       return img.init();
     });
     return require(['domReady!'], function() {

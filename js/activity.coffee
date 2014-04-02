@@ -3,9 +3,11 @@ MIN_TOUCH_DISTANCE = 400
 define (require) ->
   activity = require 'sugar-web/activity/activity'
   dictstore = require 'sugar-web/dictstore'
+
   set_context_menu_postion = require 'activity/menu'
   themes = require 'activity/themes'
   img = require 'activity/img'
+  cloud = require 'activity/cloud'
 
   require 'jquery'
   Scribe = require 'scribe'
@@ -125,10 +127,6 @@ define (require) ->
     $('button#p').click ->
       prev_slide()
 
-    document.body.addEventListener 'touchmove', ->
-      event.preventDefault()
-    , false
-
     touch_starts = {}
     container[0].addEventListener 'touchstart', (event) ->
       t = event.touches[event.which]
@@ -180,6 +178,7 @@ define (require) ->
         prev_slide()
 
     themes.dialog_init()
+    cloud.init(themes)
     img.init()
 
   require ['domReady!'], ->

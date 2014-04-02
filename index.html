@@ -41,6 +41,8 @@
 
   <button class="toolbutton" id="theme" title="Change Theme"></button>
 
+  <button class="toolbutton" id="cloud" title="Share On The Cloud"></button>
+
   <!-- Buttons with class="pull-right" will be right aligned -->
   
   <button class="toolbutton pull-right" id="stop-button" title="Stop"></button>
@@ -90,12 +92,20 @@
       </button>
 </div>
 
-<div class="theme-dialog" style="display: none;">
+<div class="theme-dialog dialog" style="display: none;">
   <div class="toolbar">
     <button class="toolbutton pull-right" id="close" title="Close Dialog">
       </button>
   </div>
   <ul class="themes-list"></ul>
+</div>
+
+<div class="cloud-dialog dialog" style="display: none;">
+  <div class="toolbar">
+    <button class="toolbutton pull-right" id="close" title="Close Dialog">
+      </button>
+  </div>
+  <div class="content"></div>
 </div>
 
 <div class="bar" style="width: 0;"></div>
