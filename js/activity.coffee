@@ -182,10 +182,13 @@ define (require) ->
       scribe_setup()
 
     $('body').keyup (event) ->
-      if event.keyCode == 39
-        next_slide()
-      if event.keyCode == 37
-        prev_slide()
+      # Key shortcuts only if the user is not editing or fullscreen
+      if document.activeElement.nodeName == "BODY" or
+                               $('#main-toolbar').hasClass 'hidden'
+        if event.keyCode == 39
+          next_slide()
+        if event.keyCode == 37
+          prev_slide()
 
     themes.dialog_init()
     cloud.init(themes)

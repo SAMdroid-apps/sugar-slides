@@ -196,11 +196,13 @@
         return scribe_setup();
       });
       $('body').keyup(function(event) {
-        if (event.keyCode === 39) {
-          next_slide();
-        }
-        if (event.keyCode === 37) {
-          return prev_slide();
+        if (document.activeElement.nodeName === "BODY" || $('#main-toolbar').hasClass('hidden')) {
+          if (event.keyCode === 39) {
+            next_slide();
+          }
+          if (event.keyCode === 37) {
+            return prev_slide();
+          }
         }
       });
       themes.dialog_init();
