@@ -4,7 +4,7 @@
   MIN_TOUCH_DISTANCE = 400;
 
   define(function(require) {
-    var Scribe, activity, add_slide, cloud, container, d, dictstore, do_bar, do_selection_menu, img, next_slide, prev_slide, remove_slide, scribePluginHeadingCommand, scribePluginToolbar, set_context_menu_postion, themes;
+    var Scribe, activity, add_slide, cloud, container, d, dictstore, do_bar, do_selection_menu, img, next_slide, prev_slide, remove_slide, scribePluginHeadingCommand, scribePluginToolbar, scribe_setup, scribe_setup_slide, set_context_menu_postion, themes;
     activity = require('sugar-web/activity/activity');
     dictstore = require('sugar-web/dictstore');
     set_context_menu_postion = require('activity/menu');
@@ -52,6 +52,7 @@
       ele = $("<section class='to-see'>               <h1>New Slide</h1>               <p>Lets type and make a new slide</p>             </section>");
       center = $('section:not(.to-see, .seen)', container);
       ele.insertAfter(center);
+      scribe_setup_slide(ele);
       next_slide();
       return do_bar();
     };
@@ -61,7 +62,8 @@
       center.remove();
       slides = $('section');
       if (slides.length === 0) {
-        return container.html("<section>               <h1>New Slide</h1>               <p>Lets type and make a new slide</p>                      </section>");
+        container.html("<section>               <h1>New Slide</h1>               <p>Lets type and make a new slide</p>                      </section>");
+        return scribe_setup_slide($('section', container));
       } else {
         slides = $('section.to-see', container);
         if (slides.length > 0) {
@@ -73,7 +75,7 @@
     };
     do_selection_menu = function(event) {
       var popover, pos;
-      if ((container.attr('contenteditable')) === 'true') {
+      if (!$('#main-toolbar').hasClass('hidden')) {
         event = event || window.event;
         popover = $('.scribe-toolbar');
         pos = set_context_menu_postion(event, popover);
@@ -87,16 +89,26 @@
         });
       }
     };
-    d = $('document');
-    d.ready(function() {
-      var ele, s, touch_starts;
-      ele = $('.slides');
+    scribe_setup_slide = function(ele) {
+      var s;
       s = new Scribe(ele[0], {
         allowBlockElements: true
       });
       s.use(scribePluginHeadingCommand(1));
       s.use(scribePluginHeadingCommand(2));
       s.use(scribePluginToolbar(document.querySelector('.scribe-toolbar')));
+      return ele.attr('contenteditable', 'true');
+    };
+    scribe_setup = function() {
+      var eles;
+      eles = $('section');
+      return eles.each(function() {
+        return scribe_setup_slide($(this));
+      });
+    };
+    d = $('document');
+    d.ready(function() {
+      var touch_starts;
       container.on('contextmenu', function(event) {
         if (event.toElement.tagName === 'IMG') {
           return;
@@ -139,7 +151,7 @@
         };
       });
       container[0].addEventListener('touchmove', function(event) {
-        var distance, t;
+        var distance, s, t;
         event.preventDefault();
         t = event.touches[event.which];
         s = touch_starts[event.which];
@@ -168,16 +180,20 @@
         }
       });
       $('button#fullscreen').click(function() {
+        var eles;
         $('#main-toolbar').addClass('hidden');
         $('button#unfullscreen').show();
         $(this).hide();
-        return $('.slides').attr('contenteditable', 'false');
+        eles = $('section');
+        return eles.each(function() {
+          return $(this).attr('contenteditable', 'false');
+        });
       });
       $('button#unfullscreen').click(function() {
         $('#main-toolbar').removeClass('hidden');
         $('button#fullscreen').show();
         $(this).hide();
-        return $('.slides').attr('contenteditable', 'true');
+        return scribe_setup();
       });
       $('body').keyup(function(event) {
         if (event.keyCode === 39) {
@@ -189,7 +205,8 @@
       });
       themes.dialog_init();
       cloud.init(themes);
-      return img.init();
+      img.init();
+      return scribe_setup();
     });
     return require(['domReady!'], function() {
       activity.write = function() {
@@ -212,10 +229,10 @@
         data = localStorage['slides'];
         obj = JSON.parse(data);
         container.html(obj.html);
-        $('.slides').attr('contenteditable', 'true');
         themes.set_theme(obj.theme || themes.get_default());
         img.setup_palettes();
-        return do_bar();
+        do_bar();
+        return scribe_setup();
       });
       return setInterval(activity.write, 1000);
     });

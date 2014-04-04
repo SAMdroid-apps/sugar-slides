@@ -42,8 +42,11 @@ body, #canvas {
     padding-right: 0;
     padding-left: 0;
     width: 90%; }
+    .dialog .toolbar span {
+      text-align: center;
+      align: middle; }
   .dialog .toolbar + * {
-    margin-top: 55px;
+    margin-top: 70px;
     padding: 10px; }
 
 .themes-list {

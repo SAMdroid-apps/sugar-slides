@@ -56,6 +56,7 @@ define (require) ->
              </section>"
     center = $ 'section:not(.to-see, .seen)', container
     ele.insertAfter center
+    scribe_setup_slide ele
     next_slide()
 
     do_bar()
@@ -70,6 +71,7 @@ define (require) ->
                <h1>New Slide</h1>
                <p>Lets type and make a new slide</p>
                       </section>"
+      scribe_setup_slide($ 'section', container)
     else
       slides = $ 'section.to-see', container
       if slides.length > 0
@@ -78,7 +80,7 @@ define (require) ->
         prev_slide()
 
   do_selection_menu = (event) ->
-    if (container.attr 'contenteditable') == 'true'
+    if not $('#main-toolbar').hasClass 'hidden'
       event = event || window.event
       popover = $ '.scribe-toolbar'
 
@@ -90,16 +92,21 @@ define (require) ->
       $('body').one 'click', ->
         popover.fadeOut()
 
-
-  d = $ 'document'
-  d.ready ->
-    ele = $ '.slides'
+  scribe_setup_slide = (ele) ->
     s = new Scribe ele[0], { allowBlockElements: true }
     s.use scribePluginHeadingCommand(1)
     s.use scribePluginHeadingCommand(2)
     s.use scribePluginToolbar(document.querySelector '.scribe-toolbar')
+    ele.attr 'contenteditable', 'true'
+
+  scribe_setup = ->
+    eles = $ 'section'
+    eles.each ->
+      scribe_setup_slide $(this)
 
 
+  d = $ 'document'
+  d.ready ->
     container.on 'contextmenu', (event) ->
       if event.toElement.tagName == 'IMG'
         return
@@ -163,13 +170,16 @@ define (require) ->
       $('#main-toolbar').addClass 'hidden'
       $('button#unfullscreen').show()
       $(this).hide()
-      $('.slides').attr 'contenteditable', 'false'
+      
+      eles = $ 'section'
+      eles.each ->
+        $(this).attr 'contenteditable', 'false'
 
     $('button#unfullscreen').click ->
       $('#main-toolbar').removeClass 'hidden'
       $('button#fullscreen').show()
       $(this).hide()
-      $('.slides').attr 'contenteditable', 'true'
+      scribe_setup()
 
     $('body').keyup (event) ->
       if event.keyCode == 39
@@ -180,6 +190,7 @@ define (require) ->
     themes.dialog_init()
     cloud.init(themes)
     img.init()
+    scribe_setup()
 
   require ['domReady!'], ->
     activity.write = ()->
@@ -199,9 +210,10 @@ define (require) ->
         data = localStorage['slides']
         obj = JSON.parse data
         container.html obj.html
-        $('.slides').attr 'contenteditable', 'true'
+
         themes.set_theme (obj.theme || themes.get_default())
         img.setup_palettes()
         do_bar()
+        scribe_setup()
 
     setInterval activity.write, 1000
