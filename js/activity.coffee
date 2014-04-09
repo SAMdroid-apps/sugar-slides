@@ -198,8 +198,8 @@ define (require) ->
   require ['domReady!'], ->
     activity.write = ()->
       obj =
-        html: container.html()
-        theme: themes.get_theme()
+        HTML: container.html()
+        Theme: themes.get_theme()
       jsonData = JSON.stringify obj
       localStorage['slides'] = jsonData
       dictstore.save()
@@ -212,9 +212,9 @@ define (require) ->
     dictstore.init ->
         data = localStorage['slides']
         obj = JSON.parse data
-        container.html obj.html
+        container.HTML obj.html
 
-        themes.set_theme (obj.theme || themes.get_default())
+        themes.set_theme (obj.Theme || themes.get_default())
         img.setup_palettes()
         do_bar()
         scribe_setup()

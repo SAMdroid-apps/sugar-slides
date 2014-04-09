@@ -214,8 +214,8 @@
       activity.write = function() {
         var jsonData, obj;
         obj = {
-          html: container.html(),
-          theme: themes.get_theme()
+          HTML: container.html(),
+          Theme: themes.get_theme()
         };
         jsonData = JSON.stringify(obj);
         localStorage['slides'] = jsonData;
@@ -230,8 +230,8 @@
         var data, obj;
         data = localStorage['slides'];
         obj = JSON.parse(data);
-        container.html(obj.html);
-        themes.set_theme(obj.theme || themes.get_default());
+        container.HTML(obj.html);
+        themes.set_theme(obj.Theme || themes.get_default());
         img.setup_palettes();
         do_bar();
         return scribe_setup();
