@@ -16,7 +16,6 @@
     scribePluginToolbar = require('plugins/scribe-plugin-toolbar');
     scribePluginHeadingCommand = require('plugins/scribe-plugin-heading-command');
     container = $('.slides');
-    activity.setup();
     do_bar = function() {
       var bar, x;
       bar = $('.bar');
@@ -171,9 +170,6 @@
       $('button#add').click(function() {
         return add_slide();
       });
-      $('button#img').click(function() {
-        return activity.showObjectChooser(img.callback);
-      });
       $('button#remove').click(function() {
         if (confirm('Delete the current slide?')) {
           return remove_slide();
@@ -211,6 +207,7 @@
       return scribe_setup();
     });
     return require(['domReady!'], function() {
+      activity.setup();
       activity.write = function() {
         var jsonData, obj;
         obj = {

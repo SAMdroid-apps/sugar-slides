@@ -15,8 +15,6 @@ define (require) ->
   scribePluginHeadingCommand = require 'plugins/scribe-plugin-heading-command'
  
   container = $ '.slides'
- 
-  activity.setup()
 
   do_bar = ->
     bar = $ '.bar'
@@ -159,9 +157,6 @@ define (require) ->
     $('button#add').click ->
       add_slide()
 
-    $('button#img').click ->
-      activity.showObjectChooser img.callback
-
     $('button#remove').click ->
       if confirm 'Delete the current slide?'
         remove_slide()
@@ -196,6 +191,8 @@ define (require) ->
     scribe_setup()
 
   require ['domReady!'], ->
+    activity.setup()
+
     activity.write = ()->
       obj =
         HTML: container.html()
