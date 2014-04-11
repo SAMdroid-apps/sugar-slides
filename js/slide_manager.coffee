@@ -24,7 +24,7 @@ define (require) ->
     slide = $ slides[0]
     slide.removeClass 'to-see'
 
-    do_bar()
+    obj.do_bar()
 
   prev_slide = ->
     slides = $ 'section.seen', container
@@ -49,7 +49,7 @@ define (require) ->
     scribe.setup_slide ele
     next_slide()
 
-    do_bar()
+    obj.do_bar()
 
   remove_slide = ->
     center = $ 'section:not(.to-see, .seen)', container

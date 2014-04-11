@@ -25,7 +25,7 @@
       center.addClass('seen');
       slide = $(slides[0]);
       slide.removeClass('to-see');
-      return do_bar();
+      return obj.do_bar();
     };
     prev_slide = function() {
       var center, slide, slides;
@@ -46,7 +46,7 @@
       ele.insertAfter(center);
       scribe.setup_slide(ele);
       next_slide();
-      return do_bar();
+      return obj.do_bar();
     };
     remove_slide = function() {
       var center, slides;
