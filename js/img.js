@@ -1,6 +1,6 @@
 (function() {
   define(function(require) {
-    var datastore, do_selection_menu, on_files_changed, set_context_menu_postion, setup_img_ele;
+    var datastore, do_selection_menu, obj, on_files_changed, set_context_menu_postion, setup_img_ele;
     datastore = require('sugar-web/datastore');
     set_context_menu_postion = require('activity/menu');
     do_selection_menu = function(event, target, fromClick) {
@@ -103,7 +103,8 @@
       }
       return _results;
     };
-    this.init = function() {
+    obj = {};
+    obj.init = function() {
       var ele;
       ele = $('button#img');
       ele.click(function() {
@@ -112,14 +113,14 @@
       ele = $('input#img');
       return ele[0].addEventListener('change', on_files_changed, false);
     };
-    this.setup_palettes = function() {
+    obj.setup_palettes = function() {
       var eles;
       eles = $('.img-container');
       return eles.each(function() {
         return setup_img_ele($(this));
       });
     };
-    return this;
+    return obj;
   });
 
 }).call(this);

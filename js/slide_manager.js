@@ -4,11 +4,12 @@
   MIN_TOUCH_DISTANCE = 400;
 
   define(function(require) {
-    var add_slide, container, next_slide, prev_slide, remove_slide, scribe;
+    var add_slide, container, next_slide, obj, prev_slide, remove_slide, scribe;
     scribe = require('activity/scribe');
     require('jquery');
     container = $('.slides');
-    this.do_bar = function() {
+    obj = {};
+    obj.do_bar = function() {
       var bar, x;
       bar = $('.bar');
       x = ($('section.seen').length) / ($('section').length - 1);
@@ -64,7 +65,7 @@
         }
       }
     };
-    this.init = function() {
+    obj.init = function() {
       var touch_starts;
       $('button#n').click(function() {
         return next_slide();
@@ -135,7 +136,7 @@
         }
       });
     };
-    return this;
+    return obj;
   });
 
 }).call(this);

@@ -1,6 +1,6 @@
 (function() {
   define(function(require) {
-    var Scribe, do_selection_menu, scribePluginHeadingCommand, scribePluginToolbar, set_context_menu_postion;
+    var Scribe, do_selection_menu, obj, scribePluginHeadingCommand, scribePluginToolbar, set_context_menu_postion;
     require('jquery');
     Scribe = require('scribe');
     scribePluginToolbar = require('plugins/scribe-plugin-toolbar');
@@ -22,7 +22,8 @@
         });
       }
     };
-    this.setup_slide = function(ele) {
+    obj = {};
+    obj.setup_slide = function(ele) {
       var s;
       s = new Scribe(ele[0], {
         allowBlockElements: true
@@ -32,14 +33,14 @@
       s.use(scribePluginToolbar(document.querySelector('.scribe-toolbar')));
       return ele.attr('contenteditable', 'true');
     };
-    this.setup = function() {
+    obj.setup = function() {
       var eles;
       eles = $('section');
       return eles.each(function() {
-        return setup_slide($(this));
+        return obj.setup_slide($(this));
       });
     };
-    this.setup_once = function() {
+    obj.setup_once = function() {
       $('button#format').click(function() {
         var popover, pos;
         popover = $('.scribe-toolbar');
@@ -66,7 +67,7 @@
         return do_selection_menu();
       });
     };
-    return this;
+    return obj;
   });
 
 }).call(this);

@@ -93,7 +93,9 @@ define (require) ->
         
       reader.readAsDataURL f
 
-  this.init = ->
+  obj = {}
+
+  obj.init = ->
     ele = $ 'button#img'
     ele.click ->
       $('input#img').click()
@@ -101,9 +103,9 @@ define (require) ->
     ele = $ 'input#img'
     ele[0].addEventListener 'change', on_files_changed, false
 
-  this.setup_palettes = ->
+  obj.setup_palettes = ->
     eles = $ '.img-container'
     eles.each ->
       setup_img_ele $(this)
 
-  this
+  obj

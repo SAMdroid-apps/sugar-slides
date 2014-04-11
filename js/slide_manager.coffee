@@ -5,8 +5,10 @@ define (require) ->
   require 'jquery'
   container = $ '.slides'
 
+  obj = {}
+
   # Staticmethod
-  this.do_bar = ->
+  obj.do_bar = ->
     bar = $ '.bar'
     x = ($('section.seen').length) / ($('section').length - 1)
     bar.css 'width', "#{ x * 100 }%"
@@ -68,7 +70,7 @@ define (require) ->
         prev_slide()
 
   # Staticmethod
-  this.init = ->
+  obj.init = ->
     $('button#n').click ->
       next_slide()
 
@@ -128,4 +130,4 @@ define (require) ->
         if event.keyCode == 37
           prev_slide()
 
-  this
+  obj

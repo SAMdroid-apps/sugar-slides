@@ -17,19 +17,21 @@ define (require) ->
 
   current_theme = T_DEFAULT.file
 
-  this.get_default = ->
+  obj = {}
+
+  obj.get_default = ->
     T_DEFAULT.file
 
-  this.set_theme = (name) ->
+  obj.set_theme = (name) ->
     $('link#theme').attr 'href', "css/themes/#{ name }.css"
     current_theme = name
 
     $('.slides').hide().show()  # Force Redraw
 
-  this.get_theme = ->
+  obj.get_theme = ->
     current_theme
 
-  this.dialog_init = ->
+  obj.dialog_init = ->
     list = $ '.themes-list'
     for theme in THEMES
       ele = $ "<li>
@@ -47,4 +49,4 @@ define (require) ->
     $('button#theme').click ->
       $('.theme-dialog').fadeIn()
 
-  this
+  obj

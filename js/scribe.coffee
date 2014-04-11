@@ -18,19 +18,21 @@ define (require) ->
       $('body').one 'click', ->
         popover.fadeOut()
 
-  this.setup_slide = (ele) ->
+  obj = {}
+
+  obj.setup_slide = (ele) ->
     s = new Scribe ele[0], { allowBlockElements: true }
     s.use scribePluginHeadingCommand(1)
     s.use scribePluginHeadingCommand(2)
     s.use scribePluginToolbar(document.querySelector '.scribe-toolbar')
     ele.attr 'contenteditable', 'true'
 
-  this.setup = ->
+  obj.setup = ->
     eles = $ 'section'
     eles.each ->
-      setup_slide $(this)
+      obj.setup_slide $(this)
 
-  this.setup_once = ->
+  obj.setup_once = ->
     $('button#format').click ->
       popover = $ '.scribe-toolbar'
       if this.palette_is_up || false
@@ -52,4 +54,4 @@ define (require) ->
       event.preventDefault()
       do_selection_menu()
 
-  this
+  obj
