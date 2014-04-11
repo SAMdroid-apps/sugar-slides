@@ -30,7 +30,10 @@ define (require) ->
     dictstore.init ->
       data = localStorage['slides']
       obj = JSON.parse data
-      container.html obj.HTML
+      try
+        container.html obj.HTML
+      catch
+        return
 
       themes.set_theme (obj.Theme || themes.get_default())
       img.setup_palettes()

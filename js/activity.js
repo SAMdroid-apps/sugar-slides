@@ -30,7 +30,11 @@
         var data, obj;
         data = localStorage['slides'];
         obj = JSON.parse(data);
-        container.html(obj.HTML);
+        try {
+          container.html(obj.HTML);
+        } catch (_error) {
+          return;
+        }
         themes.set_theme(obj.Theme || themes.get_default());
         img.setup_palettes();
         slides_manager.do_bar();
