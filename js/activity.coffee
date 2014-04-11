@@ -103,8 +103,32 @@ define (require) ->
       scribe_setup_slide $(this)
 
 
-  d = $ 'document'
-  d.ready ->
+  require ['domReady!'], ->
+    activity.setup()
+
+    activity.write = ()->
+      obj =
+        HTML: container.html()
+        Theme: themes.get_theme()
+      jsonData = JSON.stringify obj
+      localStorage['slides'] = jsonData
+      dictstore.save()
+
+    window.addEventListener 'activityStop', () ->
+      event.preventDefault()
+      activity.write()
+      activity.close()
+
+    dictstore.init ->
+        data = localStorage['slides']
+        obj = JSON.parse data
+        container.html obj.HTML
+
+        themes.set_theme (obj.Theme || themes.get_default())
+        img.setup_palettes()
+        do_bar()
+        scribe_setup()
+
     container.on 'contextmenu', (event) ->
       if event.toElement.tagName == 'IMG'
         return
@@ -189,31 +213,5 @@ define (require) ->
     cloud.init(themes)
     img.init()
     scribe_setup()
-
-  require ['domReady!'], ->
-    activity.setup()
-
-    activity.write = ()->
-      obj =
-        HTML: container.html()
-        Theme: themes.get_theme()
-      jsonData = JSON.stringify obj
-      localStorage['slides'] = jsonData
-      dictstore.save()
-
-    window.addEventListener 'activityStop', () ->
-      event.preventDefault()
-      activity.write()
-      activity.close()
-
-    dictstore.init ->
-        data = localStorage['slides']
-        obj = JSON.parse data
-        container.HTML obj.html
-
-        themes.set_theme (obj.Theme || themes.get_default())
-        img.setup_palettes()
-        do_bar()
-        scribe_setup()
 
     setInterval activity.write, 1000

@@ -4,7 +4,7 @@
   MIN_TOUCH_DISTANCE = 400;
 
   define(function(require) {
-    var Scribe, activity, add_slide, cloud, container, d, dictstore, do_bar, do_selection_menu, img, next_slide, prev_slide, remove_slide, scribePluginHeadingCommand, scribePluginToolbar, scribe_setup, scribe_setup_slide, set_context_menu_postion, themes;
+    var Scribe, activity, add_slide, cloud, container, dictstore, do_bar, do_selection_menu, img, next_slide, prev_slide, remove_slide, scribePluginHeadingCommand, scribePluginToolbar, scribe_setup, scribe_setup_slide, set_context_menu_postion, themes;
     activity = require('sugar-web/activity/activity');
     dictstore = require('sugar-web/dictstore');
     set_context_menu_postion = require('activity/menu');
@@ -105,9 +105,34 @@
         return scribe_setup_slide($(this));
       });
     };
-    d = $('document');
-    d.ready(function() {
+    return require(['domReady!'], function() {
       var touch_starts;
+      activity.setup();
+      activity.write = function() {
+        var jsonData, obj;
+        obj = {
+          HTML: container.html(),
+          Theme: themes.get_theme()
+        };
+        jsonData = JSON.stringify(obj);
+        localStorage['slides'] = jsonData;
+        return dictstore.save();
+      };
+      window.addEventListener('activityStop', function() {
+        event.preventDefault();
+        activity.write();
+        return activity.close();
+      });
+      dictstore.init(function() {
+        var data, obj;
+        data = localStorage['slides'];
+        obj = JSON.parse(data);
+        container.html(obj.HTML);
+        themes.set_theme(obj.Theme || themes.get_default());
+        img.setup_palettes();
+        do_bar();
+        return scribe_setup();
+      });
       container.on('contextmenu', function(event) {
         if (event.toElement.tagName === 'IMG') {
           return;
@@ -204,35 +229,7 @@
       themes.dialog_init();
       cloud.init(themes);
       img.init();
-      return scribe_setup();
-    });
-    return require(['domReady!'], function() {
-      activity.setup();
-      activity.write = function() {
-        var jsonData, obj;
-        obj = {
-          HTML: container.html(),
-          Theme: themes.get_theme()
-        };
-        jsonData = JSON.stringify(obj);
-        localStorage['slides'] = jsonData;
-        return dictstore.save();
-      };
-      window.addEventListener('activityStop', function() {
-        event.preventDefault();
-        activity.write();
-        return activity.close();
-      });
-      dictstore.init(function() {
-        var data, obj;
-        data = localStorage['slides'];
-        obj = JSON.parse(data);
-        container.HTML(obj.html);
-        themes.set_theme(obj.Theme || themes.get_default());
-        img.setup_palettes();
-        do_bar();
-        return scribe_setup();
-      });
+      scribe_setup();
       return setInterval(activity.write, 1000);
     });
   });
