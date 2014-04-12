@@ -36,7 +36,7 @@
         ele = $("<li>        <img src='res/themes-picture/" + theme.file + ".png' />               </li>");
         ele.data('file', theme.file);
         ele.click(function() {
-          set_theme($(this).data('file'));
+          obj.set_theme($(this).data('file'));
           return $('.theme-dialog').fadeOut();
         });
         list.append(ele);

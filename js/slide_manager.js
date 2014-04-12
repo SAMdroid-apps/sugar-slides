@@ -37,7 +37,7 @@
       center.addClass('to-see');
       slide = $(slides[slides.length - 1]);
       slide.removeClass('seen');
-      return do_bar();
+      return obj.do_bar();
     };
     add_slide = function() {
       var center, ele;

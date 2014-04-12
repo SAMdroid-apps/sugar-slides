@@ -37,7 +37,7 @@ define (require) ->
     slide = $ slides[slides.length - 1]
     slide.removeClass 'seen'
 
-    do_bar()
+    obj.do_bar()
 
   add_slide = ->
     ele = $ "<section class='to-see'>

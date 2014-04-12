@@ -12,7 +12,8 @@ define (require) ->
 
 
   require ['domReady!'], ->
-    activity.setup()
+    try  # No sugar, now you can't blow up my activity!!!!!
+      activity.setup()
 
     activity.write = ()->
       obj =
@@ -29,11 +30,11 @@ define (require) ->
 
     dictstore.init ->
       data = localStorage['slides']
-      obj = JSON.parse data
       try
-        container.html obj.HTML
+        obj = JSON.parse data
       catch
         return
+      container.html obj.HTML
 
       themes.set_theme (obj.Theme || themes.get_default())
       img.setup_palettes()
@@ -43,6 +44,7 @@ define (require) ->
     themes.dialog_init()
     cloud.init(themes)
     img.init()
+    slides_manager.init()
     scribe.setup_once()
 
     setInterval activity.write, 1000

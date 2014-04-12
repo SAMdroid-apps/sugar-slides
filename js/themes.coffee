@@ -39,7 +39,7 @@ define (require) ->
                </li>"
       ele.data 'file', theme.file
       ele.click ->
-        set_theme $(this).data 'file'
+        obj.set_theme $(this).data 'file'
         $('.theme-dialog').fadeOut()
       list.append ele
 

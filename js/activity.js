@@ -10,7 +10,9 @@
     scribe = require('activity/scribe');
     container = $('.slides');
     return require(['domReady!'], function() {
-      activity.setup();
+      try {
+        activity.setup();
+      } catch (_error) {}
       activity.write = function() {
         var jsonData, obj;
         obj = {
@@ -29,12 +31,12 @@
       dictstore.init(function() {
         var data, obj;
         data = localStorage['slides'];
-        obj = JSON.parse(data);
         try {
-          container.html(obj.HTML);
+          obj = JSON.parse(data);
         } catch (_error) {
           return;
         }
+        container.html(obj.HTML);
         themes.set_theme(obj.Theme || themes.get_default());
         img.setup_palettes();
         slides_manager.do_bar();
@@ -43,6 +45,7 @@
       themes.dialog_init();
       cloud.init(themes);
       img.init();
+      slides_manager.init();
       scribe.setup_once();
       return setInterval(activity.write, 1000);
     });
