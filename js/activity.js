@@ -21,7 +21,9 @@
         };
         jsonData = JSON.stringify(obj);
         localStorage['slides'] = jsonData;
-        return dictstore.save();
+        dictstore.save();
+        obj = null;
+        return jsonData = null;
       };
       window.addEventListener('activityStop', function() {
         event.preventDefault();

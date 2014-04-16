@@ -6,7 +6,7 @@ body, #canvas {
   .slides section {
     position: absolute;
     display: block;
-    transition: all 1s ease;
+    transition: left ease 1s;
     left: 0%;
     margin: 16px;
     padding: 16px;

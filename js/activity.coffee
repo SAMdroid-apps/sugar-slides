@@ -23,6 +23,10 @@ define (require) ->
       localStorage['slides'] = jsonData
       dictstore.save()
 
+      # Was causing a memory leak
+      obj = null
+      jsonData = null
+
     window.addEventListener 'activityStop', () ->
       event.preventDefault()
       activity.write()
