@@ -5,3 +5,4 @@ activity_version = 2
 bundle_id = me.samdroid.sugar.slides
 exec = sugar-activity-web
 icon = activity-icon
+categories = office creative
